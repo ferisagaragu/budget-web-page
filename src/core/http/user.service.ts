@@ -17,8 +17,15 @@ class UserService {
 
   public login(email: string, password: string, onSuccess: Function, onError: Function): void {
     this.firebase.signInWithEmailAndPassword(email, password, (userData: any) => {
-      onSuccess(userData);
-    }, (errorCode: any, errorMessage: any) => {
+      const userDataFinal = new UserDataModel({
+        uid: userData.uid,
+        email: userData.email,
+        name: userData.displayName,
+        photo: userData.photoURL
+      });
+
+      onSuccess(userDataFinal);
+    }, (errorCode: any) => {
       let error = 'Hubo un error al iniciar sesión.';
       
       switch (errorCode) {
