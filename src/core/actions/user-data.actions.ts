@@ -25,9 +25,9 @@ export function login(email:string, password: string): Function {
         dispatch(setLoginStatus(false));
         dispatch(setUserData(userData));
         toast('success', `Bienvenid@ ${userData.name}`);
-      }, (errorCode: any, errorMessage: any) => {
+      }, (errorMessage: any) => {
         dispatch(setLoginStatus(false));
-        alert('error', 'Upps...', errorCode);
+        alert('error', 'Upps...', errorMessage);
       }
     );
   }

@@ -19,7 +19,19 @@ class UserService {
     this.firebase.signInWithEmailAndPassword(email, password, (userData: any) => {
       onSuccess(userData);
     }, (errorCode: any, errorMessage: any) => {
-      onError(errorCode, errorMessage);
+      let error = 'Hubo un error al iniciar sesión.';
+      
+      switch (errorCode) {
+        case 'auth/user-not-found':
+          error = 'El usuario ingresado no esta registrado.'
+        break;
+
+        case 'auth/wrong-password': 
+          error = 'El usuario o contraseña ingresados son incorrectos.'
+        break;
+      }
+
+      onError(error);
     });
   }
 
