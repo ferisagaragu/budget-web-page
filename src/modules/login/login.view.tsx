@@ -76,7 +76,7 @@ const mapStateToProps = (state: any) => ({
 
 const mapDispatchToProps = (dispatch: Function) => ({
   login: (email: string, password: string) => dispatch(login(email, password)),
-  registerUser: (userRegist: any) => dispatch(registerUser(userRegist))
+  registerUser: (userRegist: any) => dispatch(registerUser(userRegist)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginView);

@@ -1,32 +1,26 @@
 import PetitionService from "./petition";
 import { UserDataModel } from "../models/user-data.model";
 import Cookies from 'js-cookie';
+import Firebase from '../../shared/firebase/firebase.shared';
 
 class UserService {
 
   private petition: PetitionService;
   private baseUrl: string;
+  private firebase: Firebase;
 
   constructor() {
     this.petition = new PetitionService();
     this.baseUrl = this.petition.baseUrl;
+    this.firebase = new Firebase();
   }
 
   public login(email: string, password: string, onSuccess: Function, onError: Function): void {
-    const userData: any = {
-      email,
-      password
-    }
-
-    this.petition.post(`${this.baseUrl}/login`, userData,
-      (data: any) => { 
-        localStorage.setItem('token', data.token);
-        onSuccess(new UserDataModel(data.userData));
-        Cookies.set('userData',{ email, password });
-      }, (error: any) => {
-        onError(error);
-      }
-    );
+    this.firebase.signInWithEmailAndPassword(email, password, (userData: any) => {
+      onSuccess(userData);
+    }, (errorCode: any, errorMessage: any) => {
+      onError(errorCode, errorMessage);
+    });
   }
 
   public registerUser(userData: any, onSuccess: Function, onError: Function): void {

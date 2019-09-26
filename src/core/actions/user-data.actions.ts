@@ -3,10 +3,8 @@ import { UserDataReducerEnum } from '../enums/user-data-reducer.enum';
 import UserService from '../http/user.service';
 import { UserDataModel } from '../models/user-data.model';
 import { alert, toast } from '../../shared/swal/swal.shared';
-import Firebase from '../../shared/firebase/firebase.shared';
 
 const userService = new UserService();
-const firebase = new Firebase();
 
 export function setUserData(payload: any): Action {
   if(!payload) {
@@ -19,10 +17,6 @@ export function setLoginStatus(payload: any): Action {
   return { type: UserDataReducerEnum.SET_STATUS_LOGIN, payload };
 }
 
-export function setNotifications(payload: any): Action {
-  return { type: UserDataReducerEnum.SET_NOTIFICATIONS, payload };
-}
-
 export function login(email:string, password: string): Function {
   return async (dispatch: Function) => {
     dispatch(setLoginStatus(true));
@@ -31,9 +25,9 @@ export function login(email:string, password: string): Function {
         dispatch(setLoginStatus(false));
         dispatch(setUserData(userData));
         toast('success', `Bienvenid@ ${userData.name}`);
-      }, (error: any) => {
+      }, (errorCode: any, errorMessage: any) => {
         dispatch(setLoginStatus(false));
-        alert('error', 'Upps...', error.message);
+        alert('error', 'Upps...', errorCode);
       }
     );
   }

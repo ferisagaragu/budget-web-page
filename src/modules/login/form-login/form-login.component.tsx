@@ -3,7 +3,6 @@ import { Field, reduxForm } from '../../../imports/react-redux.import';
 import { renderTextField } from '../../../shared/redux-form/redux-render-fields.shared';
 import { FormLoginReducerEnum } from '../../../core/enums/form-login-reducer.enum';
 import { Button, Row, Col } from 'react-bootstrap';
-import alienIcon from '../../../styles/img/alien.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './form-login.css';
 
@@ -26,11 +25,7 @@ class FormLoginComponent extends Component<Props, State> {
       <form onSubmit={ handleSubmit(submitActions) }>
         <Row>
           <Col md={ 12 } className="text-center mb-3">
-            <img
-              className="login-logo"
-              alt="user"
-              src={ alienIcon }
-            />
+            <FontAwesomeIcon icon="user-circle" size="6x" />
           </Col>
         </Row>
 
@@ -49,6 +44,12 @@ class FormLoginComponent extends Component<Props, State> {
           component={ renderTextField }
           label="Contraseña"
         />
+
+        <Row>
+          <Col md={ 12 } className="text-center mb-3">
+            <a href="#" onClick={ () => { console.log('data') }}>¿Has olvidado tu contraseña?</a>
+          </Col>
+        </Row>
 
         {
           showButtons &&

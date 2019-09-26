@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from '../../../imports/react-redux.import';
 import { renderTextField } from '../../../shared/redux-form/redux-render-fields.shared';
 import { FormRegistReducerEnum } from '../../../core/enums/form-regist-reducer.enum';
-import { Button, Row, Col } from 'react-bootstrap'; 
-import alienRegistIcon from '../../../styles/img/alien-regist.png';
+import { Button, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './form-regist.css';
 
@@ -26,11 +25,7 @@ class FormRegistComponent extends Component<Props, State> {
       <form onSubmit={ handleSubmit(submitActions) }>
         <Row>
           <Col md={ 12 } className="text-center mb-3">
-            <img
-              className="login-logo-regist"
-              alt="user"
-              src={ alienRegistIcon }
-            />
+            <FontAwesomeIcon icon="user-plus" size="6x" />
           </Col>
         </Row>
         
