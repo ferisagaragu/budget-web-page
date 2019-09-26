@@ -68,26 +68,6 @@ class UserService {
     );
   }
 
-  public removeNotification(id: string, idNotify: string, onSuccess: Function, onError: Function): void {
-    this.petition.delete(`${this.baseUrl}/deleteNotification?id=${id}&notifyId=${idNotify}`, 
-      (resp: any) => {
-        onSuccess(resp);
-      }, (error: any) => {
-        onError(error);
-      }
-    );
-  }
-
-  public createNotification(notificationData: any, onSuccess: Function, onError: Function): void {
-    this.petition.post(`${this.baseUrl}/createNotification`, notificationData,
-      (resp: any) => {
-        onSuccess(resp);
-      }, (error: any) => {
-        onError(error);
-      }
-    );
-  }
-
 }
 
 export default UserService;
