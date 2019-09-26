@@ -3,6 +3,8 @@ import { Field, reduxForm } from '../../../imports/react-redux.import';
 import { renderTextField } from '../../../shared/redux-form/redux-render-fields.shared';
 import { FormLoginReducerEnum } from '../../../core/enums/form-login-reducer.enum';
 import { Button, Row, Col } from 'react-bootstrap';
+import alienIcon from '../../../styles/img/alien.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './form-login.css';
 
 interface Props { 
@@ -27,7 +29,7 @@ class FormLoginComponent extends Component<Props, State> {
             <img
               className="login-logo"
               alt="user"
-              src={ '' }
+              src={ alienIcon }
             />
           </Col>
         </Row>
@@ -52,17 +54,21 @@ class FormLoginComponent extends Component<Props, State> {
           showButtons &&
             <div className="text-center mt-4">
               <Button 
-                className="mr-3 btn-hover color-9"
+                className="mr-3"
                 onClick={ cancel }
               >
+                <FontAwesomeIcon icon="plus-circle" />
+                &nbsp;
                 Registrar
               </Button>
 
               <Button 
-                className="btn-hover color-5"
-                type="submit" 
+                type="submit"
+                variant="success" 
                 disabled={ submitting }
               >
+                <FontAwesomeIcon icon="address-card" />
+                &nbsp;
                 Entrar
               </Button>
             </div>

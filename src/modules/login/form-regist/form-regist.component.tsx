@@ -3,6 +3,8 @@ import { Field, reduxForm } from '../../../imports/react-redux.import';
 import { renderTextField } from '../../../shared/redux-form/redux-render-fields.shared';
 import { FormRegistReducerEnum } from '../../../core/enums/form-regist-reducer.enum';
 import { Button, Row, Col } from 'react-bootstrap'; 
+import alienRegistIcon from '../../../styles/img/alien-regist.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './form-regist.css';
 
 interface Props { 
@@ -25,9 +27,9 @@ class FormRegistComponent extends Component<Props, State> {
         <Row>
           <Col md={ 12 } className="text-center mb-3">
             <img
-              className="rounded-circle"
+              className="login-logo-regist"
               alt="user"
-              src={ '' }
+              src={ alienRegistIcon }
             />
           </Col>
         </Row>
@@ -70,7 +72,10 @@ class FormRegistComponent extends Component<Props, State> {
               <Button 
                 className="mr-3"
                 onClick={ cancel }
+                variant="danger"
               >
+                <FontAwesomeIcon icon="times" />
+                &nbsp;
                 Cancelar
               </Button>
 
@@ -78,6 +83,8 @@ class FormRegistComponent extends Component<Props, State> {
                 type="submit"
                 disabled={ submitting }
               >
+                <FontAwesomeIcon icon="address-book" />
+                &nbsp;
                 Registrar
               </Button>
             </div>
