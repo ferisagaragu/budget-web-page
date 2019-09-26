@@ -44,7 +44,7 @@ class Firebase {
       if (onError) {
         onError(errorCode, errorMessage);
       }
-    }).then(() =>{
+    }).then(() => {
       if (!errorCode) {
         firebase.auth().onAuthStateChanged((user) => {
           if (!errorCode) {
@@ -55,7 +55,17 @@ class Firebase {
     });
   }
 
-  //REGIST AND LOGIN WHIT GEMAIL
+  public sendPasswordResetEmail(email: string, onSendMail: Function, onError?: Function) {
+    firebase.auth().sendPasswordResetEmail(email).then(() => {
+      onSendMail();
+    }).catch((error: any) => {
+      if (onError) {
+        onError(error);
+      }
+    });
+  }
+
+  //REGIST AND LOGIN WHIT GMAIL
   public signInWithGooglePopup(onSignIn: Function, onError?: Function | undefined): void {
     const provider = new firebase.auth.GoogleAuthProvider();
 

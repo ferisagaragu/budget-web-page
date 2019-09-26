@@ -12,6 +12,7 @@ interface Props {
   cancel: any;
   submitting: any;
   submitActions: Function;
+  recoverPassword: Function;
   showButtons: boolean;
 }
 
@@ -19,7 +20,14 @@ interface State { }
 
 class FormLoginComponent extends Component<Props, State> {
   render() {
-    const { handleSubmit, cancel, submitting, submitActions, showButtons } = this.props;
+    const { 
+      handleSubmit, 
+      cancel, 
+      submitting, 
+      submitActions, 
+      showButtons, 
+      recoverPassword 
+    } = this.props;
     
     return (
       <form onSubmit={ handleSubmit(submitActions) }>
@@ -47,7 +55,7 @@ class FormLoginComponent extends Component<Props, State> {
 
         <Row>
           <Col md={ 12 } className="text-center mb-3">
-            <a href="#" onClick={ () => { console.log('data') }}>¿Has olvidado tu contraseña?</a>
+            <a href="#" onClick={ () => recoverPassword() }>¿Has olvidado tu contraseña?</a>
           </Col>
         </Row>
 

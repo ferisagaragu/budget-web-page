@@ -55,6 +55,7 @@ class LoginView extends Component<Props, State> {
                       submitActions={ (formData: any) => login(formData.email, formData.password) }
                       cancel={ () => this.showRegistModel() }
                       showButtons={ !statusLogin }
+                      recoverPassword={ () => { console.log('hola amigo') } }
                     />
                 }
                 {
