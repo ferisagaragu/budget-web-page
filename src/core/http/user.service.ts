@@ -54,16 +54,17 @@ class UserService {
     });
   }
 
-  public registerUser(userData: any, onSuccess: Function, onError: Function): void {
-    console.log(userData);
-    
+  public registerUser(userData: any, onSuccess: Function, onError: Function): void {  
     this.firebase.createUserWithEmailAndPassword(userData.email, userData.password, (user: any) => {
-      onSuccess(new UserDataModel({
+      const userDataFinal = new UserDataModel({
         uid: user.uid,
-        email: user.email,
-        name: user.displayName,
-        photo: user.photoURL
-      }));
+        email: userData.email,
+        name: userData.name,
+        photo: userData.img
+      });
+      
+      this.firebase.update(`users/${user.uid}`, userDataFinal);
+      onSuccess(userDataFinal);
     }, (errorCode: any, errorMessage: any) => {
       if (errorMessage === 'The email address is already in use by another account.') {
         onError('La dirección de correo electrónico ya está en uso por otra cuenta.');

@@ -93,7 +93,12 @@ const validate = (values: any) => {
   const errors = {
     name: '',
     email: '',
-    password: ''
+    password: '',
+    img: ''
+  }
+
+  if (!values.img) {
+    errors.img = 'La imagen es requerida';
   }
 
   if (!values.name) {
