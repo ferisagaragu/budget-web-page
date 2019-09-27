@@ -55,7 +55,7 @@ class FormLoginComponent extends Component<Props, State> {
 
         <Row>
           <Col md={ 12 } className="text-center mb-3">
-            <a href="#" onClick={ () => recoverPassword() }>¿Has olvidado tu contraseña?</a>
+            <a href="/#" onClick={ () => recoverPassword() }>¿Has olvidado tu contraseña?</a>
           </Col>
         </Row>
 

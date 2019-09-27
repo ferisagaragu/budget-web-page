@@ -4,7 +4,8 @@ import {
   faAddressBook,
   faTimes,
   faUserCircle,
-  faUserPlus
+  faUserPlus,
+  faUndo
 } from '@fortawesome/free-solid-svg-icons';
 
 const icons: any = [ 
@@ -13,7 +14,8 @@ const icons: any = [
   faAddressBook,
   faTimes,
   faUserCircle,
-  faUserPlus
+  faUserPlus,
+  faUndo
 ];
 
 export default icons;

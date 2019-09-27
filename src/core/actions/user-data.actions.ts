@@ -37,14 +37,24 @@ export function registerUser(userRegist: any) {
   return async (dispatch: Function) => {
     dispatch(setLoginStatus(true));
     userService.registerUser(userRegist,
-      (userData: UserDataModel, message: string) => {
+      (userData: UserDataModel) => {
         dispatch(setLoginStatus(false));
         dispatch(setUserData(userData));
-        alert('success', 'Genial!!', message);
+        alert('success', 'Genial!!', `El usuario fue registrado con el correo: ${userData.email}`);
       }, (error: any) => {
         dispatch(setLoginStatus(false));
-        alert('error', 'Upps...', error.message);
+        alert('error', 'Upps...', error);
       }
     );
+  }
+}
+
+export function recoverPassword(email: string) {
+  return async (dispatch: Function) => { 
+    userService.recoverPassword(email, (sendMail: string) => {
+      alert('success', 'Genial!!', `Se envio un correo a: ${sendMail} para recuperar la contraseña`);
+    }, (error: any) => {
+      alert('error', 'Upps...', error);
+    });
   }
 }

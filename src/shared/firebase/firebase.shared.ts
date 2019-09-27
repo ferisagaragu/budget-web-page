@@ -7,7 +7,7 @@ class Firebase {
     let errorCode: string = '';
     let errorMessage: string = '';
 
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch((error: any) => {
       errorCode = error.code;
       errorMessage = error.message;
 
@@ -26,7 +26,7 @@ class Firebase {
           firebase.auth().signOut().then(
             () => {}
           ).catch(
-            (error) => {}
+            (error: any) => {}
           );
         });
       }
@@ -37,7 +37,7 @@ class Firebase {
     let errorCode: string = '';
     let errorMessage: string = '';
     
-    firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
+    firebase.auth().signInWithEmailAndPassword(email, password).catch((error: any) => {
       errorCode = error.code;
       errorMessage = error.message;
 
@@ -46,7 +46,7 @@ class Firebase {
       }
     }).then(() => {
       if (!errorCode) {
-        firebase.auth().onAuthStateChanged((user) => {
+        firebase.auth().onAuthStateChanged((user: any) => {
           if (!errorCode) {
             onLogIn(user);
           } 
@@ -73,7 +73,7 @@ class Firebase {
       const token = result.credential.accessToken;
       const user = result.user;
       onSignIn(token, user);
-    }).catch(function(error) {
+    }).catch((error: any) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       if (onError) {
@@ -85,7 +85,7 @@ class Firebase {
   public signOut(onSignOut: Function, onError?: Function | undefined): void {
     firebase.auth().signOut().then(() => {
       onSignOut();
-    }).catch(function(error) {
+    }).catch((error: any) => {
       if (onError) {
         onError(error);
       }
@@ -106,7 +106,7 @@ class Firebase {
   }
 
   public remove(path: string, errorFunction?: Function | undefined): void {
-    firebase.database().ref().child(path).remove((error) => {
+    firebase.database().ref().child(path).remove((error: any) => {
       if (errorFunction) {
         errorFunction(error);
       }
@@ -114,7 +114,7 @@ class Firebase {
   }
 
   public update(path: string, data: any, errorFunction?: Function | undefined): void {
-    firebase.database().ref(path).update(data,(error) => {
+    firebase.database().ref(path).update(data,(error: any) => {
       if (errorFunction) {
         errorFunction(error);
       }
@@ -122,7 +122,7 @@ class Firebase {
   }
 
   public set(path: string,data: any, errorFunction?: Function | undefined): void {
-    firebase.database().ref(path).set(data,(error) => {
+    firebase.database().ref(path).set(data,(error: any) => {
       if (errorFunction) {
         errorFunction(error);
       }
