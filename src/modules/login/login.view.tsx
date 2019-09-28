@@ -5,7 +5,7 @@ import FormRegistComponent from './form-regist/form-regist.component';
 import FormLoginComponent from './form-login/form-login.component';
 import { login, registerUser, recoverPassword } from '../../core/actions/user-data.actions';
 import { UserDataModel } from '../../core/models/user-data.model';
-import StatusLoginComponent from './status-login/status-login.component';
+import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator';
 import { ModalCenteredComponent } from '../../shared/modal/modal.component';
 import FormRecoverPasswordComponent from './form-recover-password/form-recover-password.component';
 
@@ -84,7 +84,7 @@ class LoginView extends Component<Props, State> {
                 }
                 {
                   statusLogin && 
-                    <StatusLoginComponent />
+                    <LoadingIndicatorComponent />
                 }
               </Card.Body>
             </Card>  

@@ -5,7 +5,8 @@ import {
   faTimes,
   faUserCircle,
   faUserPlus,
-  faUndo
+  faUndo,
+  faSpinner
 } from '@fortawesome/free-solid-svg-icons';
 
 const icons: any = [ 
@@ -15,7 +16,8 @@ const icons: any = [
   faTimes,
   faUserCircle,
   faUserPlus,
-  faUndo
+  faUndo,
+  faSpinner
 ];
 
 export default icons;

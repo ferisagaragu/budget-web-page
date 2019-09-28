@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from '../../../imports/react-redux.import';
-import { renderTextField } from '../../../shared/redux-form/redux-render-fields.shared';
+import { renderTextField, renderImageTextField } from '../../../shared/redux-form/redux-render-fields.shared';
 import { FormRegistReducerEnum } from '../../../core/enums/form-regist-reducer.enum';
 import { Button, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,11 +15,23 @@ interface Props {
   showButtons: boolean;
 }
 
-interface State { }
+interface State { 
+  img: string;
+}
 
 class FormRegistComponent extends Component<Props, State> {
+  
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      img: ''
+    }
+  }
+  
   render() {
     const { handleSubmit, cancel, submitting, submitActions, showButtons } = this.props;
+    const { img } = this.state;
 
     return (
       <form onSubmit={ handleSubmit(submitActions) }>
@@ -28,13 +40,15 @@ class FormRegistComponent extends Component<Props, State> {
             <FontAwesomeIcon icon="user-plus" size="6x" />
           </Col>
         </Row>
-        
+                
         <Field 
           className="form-control"
           name="img"
           type="text"
-          component={ renderTextField }
+          img={ img }
+          component={ renderImageTextField }
           label="Imagen de usuario"
+          onKeyUp={ (evt: any) => this.setState({ img: evt.target.value }) }
         />
 
         <Field 
