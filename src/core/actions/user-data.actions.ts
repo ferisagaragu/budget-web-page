@@ -27,6 +27,7 @@ export function login(email:string, password: string): Function {
         toast('success', `Bienvenid@ ${userData.email}`);
       }, (errorMessage: any) => {
         dispatch(setLoginStatus(false));
+        dispatch(setUserData(null));
         alert('error', 'Upps...', errorMessage);
       }
     );
@@ -43,6 +44,7 @@ export function registerUser(userRegist: any) {
         alert('success', 'Genial!!', `El usuario fue registrado con el correo: ${userData.email}`);
       }, (error: any) => {
         dispatch(setLoginStatus(false));
+        dispatch(setUserData(null));
         alert('error', 'Upps...', error);
       }
     );

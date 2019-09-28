@@ -17,14 +17,20 @@ class UserService {
 
   public login(email: string, password: string, onSuccess: Function, onError: Function): void {
     this.firebase.signInWithEmailAndPassword(email, password, (userData: any) => {
-      const userDataFinal = new UserDataModel({
-        uid: userData.uid,
-        email: userData.email,
-        name: userData.displayName,
-        photo: userData.photoURL
-      });
+      if (userData.uid) {
+        this.firebase.once(`users/${userData.uid}`, (snapshot: any) => {
+          const { uid, email, name, photo } = snapshot.val();
 
-      onSuccess(userDataFinal);
+          const userDataFinal = new UserDataModel({
+            uid,
+            email,
+            name,
+            photo
+          });
+
+          onSuccess(userDataFinal);
+        });      
+      }
     }, (errorCode: any) => {
       let error = 'Hubo un error al iniciar sesión.';
       
@@ -64,6 +70,7 @@ class UserService {
       });
       
       this.firebase.update(`users/${user.uid}`, userDataFinal);
+      Cookies.set('userData', JSON.stringify(userDataFinal));
       onSuccess(userDataFinal);
     }, (errorCode: any, errorMessage: any) => {
       if (errorMessage === 'The email address is already in use by another account.') {
