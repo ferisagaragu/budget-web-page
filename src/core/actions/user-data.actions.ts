@@ -34,6 +34,13 @@ export function login(email:string, password: string): Function {
   }
 }
 
+export function logout(name:string): Function {
+  return async (dispatch: Function) => {
+    dispatch(setUserData(null));
+    toast('info', `Hasta pronto ${name}`);
+  }
+}
+
 export function registerUser(userRegist: any) {
   return async (dispatch: Function) => {
     dispatch(setLoginStatus(true));

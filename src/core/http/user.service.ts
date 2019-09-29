@@ -28,6 +28,7 @@ class UserService {
             photo
           });
 
+          Cookies.set('userData', JSON.stringify({ email, password }));
           onSuccess(userDataFinal);
         });      
       }
@@ -70,7 +71,7 @@ class UserService {
       });
       
       this.firebase.update(`users/${user.uid}`, userDataFinal);
-      Cookies.set('userData', JSON.stringify(userDataFinal));
+      Cookies.set('userData', JSON.stringify({ email: userData.email, password: userData.password }));
       onSuccess(userDataFinal);
     }, (errorCode: any, errorMessage: any) => {
       if (errorMessage === 'The email address is already in use by another account.') {

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from '../../../imports/react-redux.import';
 import { renderTextField } from '../../../shared/redux-form/redux-render-fields.shared';
 import { FormRecoverPasswordReducerEnum } from '../../../core/enums/form-recover-password-reducer.enum';
-import './form-recover-password.css';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './form-recover-password.css';
 
 interface Props { 
   initialValues: any;
