@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from '../../imports/react-redux.import';
-import { UserDataModel } from '../../core/models/user-data.model';
 import HeaderView from '../header/header.view';
 import { Container, Row } from 'react-bootstrap';
 import CardBudgetComponent from './card-budget/card-budget.component';

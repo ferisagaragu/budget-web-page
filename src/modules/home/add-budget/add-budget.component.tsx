@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Card, Col, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './add-budget.css';
 import { ModalComponent } from '../../../shared/modal/modal.component';
 import FormCreateBudgetComponent from '../form-create-budget/form-create-budget.component';
+import moment from 'moment';
+import './add-budget.css';
 
 interface Props { }
 
@@ -30,8 +31,17 @@ class AddBudgetComponent extends Component<Props, State> {
           title="Nuevo presupuesto"
           modalShow={ showModal }
           body={ 
-            <FormCreateBudgetComponent 
-              handleSubmit={ () => {} }
+            <FormCreateBudgetComponent
+              initialValues={ 
+                { 
+                  name: '', 
+                  date: moment().format("DD - MMMM - YYYY"),
+                  dateEnd: moment().format("DD - MMMM - YYYY"),
+                  company: { value: '1', label: 'FerGarGod' }
+                } 
+              } 
+              cancel={ () => this.setState({ showModal: !showModal }) }
+              submitActions={ (data: any) => { console.log(data) } }
             /> 
           }
           onHide={ () => this.setState({ showModal: !showModal }) }
@@ -57,7 +67,7 @@ class AddBudgetComponent extends Component<Props, State> {
                   className="btn btn-circle btn-xl"
                   onClick={ () => this.setState({ showModal: true }) }
                 >
-                    <FontAwesomeIcon icon="calculator" />
+                  <FontAwesomeIcon icon="calculator" />
                 </Button>
               </Card.Text>
             </Card.Body>

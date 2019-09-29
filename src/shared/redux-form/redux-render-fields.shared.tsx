@@ -13,7 +13,8 @@ export const renderTextField = (metaData: any) => {
       error,
       warning,
       touched
-    }
+    },
+    disabled
   } = metaData;
 
   const errorClass = touched && error ? 'error' : '';
@@ -32,6 +33,7 @@ export const renderTextField = (metaData: any) => {
           placeholder={ label }
           type={ type }
           onKeyUp={ onKeyUp }
+          disabled={ disabled }
         />
         {
           touched &&

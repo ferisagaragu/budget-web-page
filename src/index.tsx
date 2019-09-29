@@ -9,6 +9,7 @@ import { store } from './config/app.config';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/stylesheet/index.css';
+import 'react-datepicker/dist/react-datepicker.min.css';
 
 ReactDOM.render(
   <Provider store={ store }>

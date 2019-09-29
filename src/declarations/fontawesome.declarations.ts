@@ -10,7 +10,8 @@ import {
   faSignOutAlt,
   faCalculator,
   faFileInvoice,
-  faTrash
+  faTrash,
+  faSave
 } from '@fortawesome/free-solid-svg-icons';
 
 const icons: any = [ 
@@ -25,7 +26,8 @@ const icons: any = [
   faSignOutAlt,
   faCalculator,
   faFileInvoice,
-  faTrash
+  faTrash,
+  faSave
 ];
 
 export default icons;
