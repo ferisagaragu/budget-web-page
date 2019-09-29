@@ -10,6 +10,7 @@ import { store } from './config/app.config';
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/stylesheet/index.css';
 import 'react-datepicker/dist/react-datepicker.min.css';
+import 'react-phone-input-2/dist/style.css';
 
 ReactDOM.render(
   <Provider store={ store }>

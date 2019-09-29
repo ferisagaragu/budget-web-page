@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from '../../../imports/react-redux.import';
-import { renderTextField } from '../../../shared/redux-form/redux-render-fields.shared';
+import { renderTextField, renderPhoneInput } from '../../../shared/redux-form/redux-render-fields.shared';
 import { FormCreateBudgetReducerEnum } from '../../../core/enums/form-create-budget-reducer.enum';
 import renderDatePicker from '../../../shared/redux-form/redux-render-datepicker.shared';
 import { Button, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import renderSingleSelect from '../../../shared/redux-form/redux-render-singleselect.shared';
+import GoogleSuggest from '../../../shared/redux-form/redux-render-googlesuggest.shared';
 import './form-create-budget.css';
 
 interface Props { 
@@ -64,6 +65,20 @@ class FormCreateBudgetComponent extends Component<Props, State> {
           defaultValue={ initialValues.company }
         />
 
+        <Field 
+          className="form-control"
+          name="phoneNumber"
+          component={ renderPhoneInput }
+          label="Numero telefonico"
+        />
+
+        <Field 
+          className="form-control"
+          name="address"
+          component={ GoogleSuggest }
+          label="Direccion de la compañia"
+        />
+
         <Row>
           <Col className="text-right" md={ 12 }>
             <Button 
@@ -74,7 +89,7 @@ class FormCreateBudgetComponent extends Component<Props, State> {
             >
               <FontAwesomeIcon icon="save" />
               &nbsp;
-              Save
+              Crear presupuesto
             </Button>
 
             <Button 
@@ -83,7 +98,7 @@ class FormCreateBudgetComponent extends Component<Props, State> {
             >
               <FontAwesomeIcon icon="times" />
               &nbsp;
-              Cancel
+              Cancelar
             </Button>
           </Col>
         </Row>
@@ -98,7 +113,9 @@ const validate = (values: any) => {
     date: '',
     dateEnd: '',
     company: '',
-    for: ''
+    for: '',
+    phoneNumber: '',
+    address: ''
   }
   
   if (!values.name) {
@@ -119,6 +136,14 @@ const validate = (values: any) => {
 
   if (!values.company) {
     errors.company = 'La compañia es requerida';
+  }
+
+  if(!values.phoneNumber || values.phoneNumber === '+' || values.phoneNumber === '+52') {
+    errors.phoneNumber = 'El numero telefonico es requerido';
+  }
+
+  if(!values.address) {
+    errors.address = 'La direccion es requerida';
   }
 
   return errors

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
+import PhoneInput from '../../imports/react-phone-input-2.import';
 import '../../styles/stylesheet/form.css';
 
 export const renderTextField = (metaData: any) => {
@@ -164,6 +165,50 @@ export const renderCheckBox = (metaData: any) => {
           ((error && <div className="text-danger">{ error }</div>) ||
           (warning && <div>{ warning }</div>))
       }
+    </div>
+  );
+};
+
+export const renderPhoneInput = (metaData: any) => {
+  const {
+    input,
+    label,
+    className,
+    onKeyUp,
+    meta: {
+      error,
+      warning,
+      touched
+    },
+    disabled
+  } = metaData;
+
+  const errorClass = touched && error ? 'error' : '';
+
+  return (
+    <div className="mb-3">
+      <label>
+        <b>
+          { label }
+        </b>
+      </label>
+      <div>
+
+        <PhoneInput 
+          className={ `${className} ${errorClass}` }
+          { ...input }
+          placeholder={ label }
+          onKeyUp={ onKeyUp }
+          disabled={ disabled }
+          masks={ { mx: '+.. (..) ..-..-..-..' } }
+          defaultCountry={ 'mx' }
+        />
+        {
+          touched &&
+            ((error && <div className="text-danger">{ error }</div>) ||
+            (warning && <div>{ warning }</div>))
+        }
+      </div>
     </div>
   );
 };
