@@ -4,15 +4,16 @@ import CardBudgetComponent from '../card-budget/card-budget.component';
 import key from '../../../shared/key/react-elements.key';
 import './list-budget.css';
 
-interface Props { 
+interface Props {
   budgets: Array<BudgetModel>;
+  onDrop: Function;
 }
 
 interface State { }
 
 class ListBudgetComponent extends Component<Props, State> {
   render() {
-    const { budgets } = this.props;
+    const { budgets, onDrop } = this.props;
 
     return (
       budgets &&
@@ -22,6 +23,7 @@ class ListBudgetComponent extends Component<Props, State> {
               <CardBudgetComponent 
                 key={ key() }
                 budget={ budget }
+                onDrop={ () => onDrop(budget.uid) }
               />
             ))
           }

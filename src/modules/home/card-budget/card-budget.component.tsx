@@ -3,17 +3,17 @@ import { Card, Col, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BudgetModel } from '../../../core/models/budget.model';
 import './card-budget.css';
-import { alertQuestion } from '../../../shared/swal/swal.shared';
 
 interface Props { 
   budget: BudgetModel;
+  onDrop: Function;
 }
 
 interface State { }
 
 class CardBudgetComponent extends Component<Props, State> {
   render() {
-    const { budget } = this.props;
+    const { budget, onDrop } = this.props;
 
     return (
       <Col className="ml-3 mr-3 mt-3 mb-3" md={ 3 }>
@@ -22,16 +22,7 @@ class CardBudgetComponent extends Component<Props, State> {
             <Button 
               className="btn btn-circle btn-lg" 
               variant="outline-danger"
-              onClick={ () => 
-                alertQuestion(
-                  'question', 
-                  'Elminar presupuesto', 
-                  '¿Estas seguro que deseas eliminar el presupuesto?',
-                  () => {
-                    console.log('Dio aceptar');
-                  }
-                ) 
-              }
+              onClick={ () => onDrop() }
             >
               <FontAwesomeIcon icon="trash" />
             </Button>

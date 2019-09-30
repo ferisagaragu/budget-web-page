@@ -28,3 +28,13 @@ export function createBudget(uid: string, data: any): Function {
     );
   }
 }
+
+export function dropBudget(uid: string, budgetId: string): Function {
+  return async (dispatch: Function) => {
+    budgetService.dropBudget(uid, budgetId, 
+      (error: string) => {
+        alert('error','Uppss', error);
+      }
+    );
+  }
+}

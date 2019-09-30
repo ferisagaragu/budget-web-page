@@ -48,6 +48,14 @@ class BudgetService {
     );
   }
 
+  public dropBudget(uid: string, budgetId: string, onError: Function): void {
+    this.firebase.remove(`budgets/${uid}/${budgetId}`, 
+      (error: any) => {
+        onError(error);
+      }
+    );
+  }
+
 }
 
 export default BudgetService;

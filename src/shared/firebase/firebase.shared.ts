@@ -108,7 +108,9 @@ class Firebase {
   public remove(path: string, errorFunction?: Function | undefined): void {
     firebase.database().ref().child(path).remove((error: any) => {
       if (errorFunction) {
-        errorFunction(error);
+        if (error) {
+          errorFunction(error);
+        }
       }
     });
   }
