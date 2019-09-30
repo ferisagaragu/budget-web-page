@@ -115,20 +115,27 @@ class Firebase {
 
   public update(path: string, data: any, errorFunction?: Function | undefined): void {
     firebase.database().ref(path).update(data,(error: any) => {
-      if (errorFunction) {
+      if (errorFunction && error) {
         errorFunction(error);
       }
     });
   }
 
-  public set(path: string,data: any, errorFunction?: Function | undefined): void {
+  public set(path: string, data: any, errorFunction?: Function | undefined): void {
     firebase.database().ref(path).set(data,(error: any) => {
-      if (errorFunction) {
+      if (errorFunction && error) {
         errorFunction(error);
       }
     });
   }
 
+  public push(path: string, data: any, errorFunction?: Function | undefined): void {
+    firebase.database().ref(path).push(data,(error: any) => {
+      if (errorFunction && error) {
+        errorFunction(error);
+      }
+    });
+  }
 }
 
 export default Firebase;

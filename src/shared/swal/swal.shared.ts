@@ -24,3 +24,20 @@ export const alert = (iconType: "success" | "error" | "warning" | "info" | "ques
     text
   });
 }
+
+export const alertQuestion = (iconType: "success" | "error" | "warning" | "info" | "question", title: string, text: string, onSuccess: Function) => {
+  Swal.fire({
+    title,
+    text,
+    type: iconType,
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Aceptar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.value) {
+      onSuccess();
+    }
+  })
+}

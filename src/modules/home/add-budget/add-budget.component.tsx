@@ -4,9 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ModalComponent } from '../../../shared/modal/modal.component';
 import FormCreateBudgetComponent from '../form-create-budget/form-create-budget.component';
 import moment from 'moment';
+import { BudgetModel } from '../../../core/models/budget.model';
 import './add-budget.css';
 
-interface Props { }
+interface Props { 
+  submitActions: Function;
+}
 
 interface State { 
   showModal: boolean;
@@ -22,6 +25,14 @@ class AddBudgetComponent extends Component<Props, State> {
     }
   }
   
+  private submit(formData: BudgetModel): void {
+    const { showModal } = this.state;
+    const { submitActions } = this.props;
+
+    submitActions(formData);
+    this.setState({ showModal: !showModal });
+  }
+
   render() {
     const { showModal } = this.state;
 
@@ -34,15 +45,13 @@ class AddBudgetComponent extends Component<Props, State> {
             <FormCreateBudgetComponent
               initialValues={ 
                 { 
-                  name: '', 
                   date: moment().format("DD - MMMM - YYYY"),
                   dateEnd: moment().format("DD - MMMM - YYYY"),
-                  company: { value: '1', label: 'FerGarGod' },
-                  phoneNumber: "+52 (33) 23-81-47-52"
+                  company: { value: '1', label: 'FerGarGod' }
                 } 
               } 
               cancel={ () => this.setState({ showModal: !showModal }) }
-              submitActions={ (data: any) => { console.log(data) } }
+              submitActions={ (formData: BudgetModel) => this.submit(formData) }
             /> 
           }
           onHide={ () => this.setState({ showModal: !showModal }) }

@@ -25,61 +25,75 @@ class FormCreateBudgetComponent extends Component<Props, State> {
 
     return (
       <form onSubmit={ handleSubmit(submitActions) }>
-        <Field 
-          className="form-control"
-          name="name"
-          component={ renderTextField }
-          label="Nombre del presupuesto"
-        />
-
-        <Field 
-          className="form-control"
-          name="date"
-          component={ renderDatePicker }
-          label="Fecha de creación"
-          dateFormat="d - MMMM - yyyy"
-          disabled="disabled"
-        />
-
-        <Field 
-          className="form-control"
-          name="dateEnd"
-          label="Fecha de final"
-          component={ renderDatePicker }
-          dateFormat="d - MMMM - yyyy"
-        />
-
-        <Field 
-          className="form-control"
-          name="for"
-          component={ renderTextField }
-          label="Para"
-        />
-
-        <Field 
-          name="company"
-          component={ renderSingleSelect }
-          label="Compañia"
-          options={ [{ value: '1', label: 'FerGarGod' }, { value: '2', label: 'FerGarGod2' }] }
-          noOptionsMessage="No se encontraron coincidencias"
-          defaultValue={ initialValues.company }
-        />
-
-        <Field 
-          className="form-control"
-          name="phoneNumber"
-          component={ renderPhoneInput }
-          label="Numero telefonico"
-        />
-
-        <Field 
-          className="form-control"
-          name="address"
-          component={ GoogleSuggest }
-          label="Direccion de la compañia"
-        />
-
         <Row>
+          <Col md={ 3 }>
+            <Field 
+              className="form-control"
+              name="name"
+              component={ renderTextField }
+              label="Nombre del presupuesto"
+            />
+          </Col>
+
+          <Col md={ 3 }>
+            <Field 
+              className="form-control"
+              name="date"
+              component={ renderDatePicker }
+              label="Fecha de creación"
+              dateFormat="d - MMMM - yyyy"
+              disabled="disabled"
+            />
+          </Col>
+
+          <Col md={ 3 }>
+            <Field 
+              className="form-control"
+              name="dateEnd"
+              label="Fecha de final"
+              component={ renderDatePicker }
+              dateFormat="d - MMMM - yyyy"
+            />
+          </Col>
+
+          <Col md={ 3 }>
+            <Field 
+              className="form-control"
+              name="for"
+              component={ renderTextField }
+              label="Para"
+            />
+          </Col>
+
+          <Col md={ 3 }>
+            <Field 
+              name="company"
+              component={ renderSingleSelect }
+              label="Compañia"
+              options={ [{ value: '1', label: 'FerGarGod' }, { value: '2', label: 'FerGarGod2' }] }
+              noOptionsMessage="No se encontraron coincidencias"
+              defaultValue={ initialValues.company }
+            />
+          </Col>
+
+          <Col md={ 3 }>
+            <Field 
+              className="form-control"
+              name="phoneNumber"
+              component={ renderPhoneInput }
+              label="Numero telefonico"
+            />
+          </Col>
+
+          <Col className="ml-5" md={ 5 }>
+            <Field 
+              className="form-control"
+              name="address"
+              component={ GoogleSuggest }
+              label="Direccion de la compañia"
+            />
+          </Col>
+
           <Col className="text-right" md={ 12 }>
             <Button 
               className="mr-3"
