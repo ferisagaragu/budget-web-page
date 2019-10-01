@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from '../imports/react-redux.import';
 import LoginView from './login/login.view';
 import { UserDataModel } from '../core/models/user-data.model';
-import HomeView from './home/home.view';
+import Routing from '../core/routes/routing.routes';
 import { login } from '../core/actions/user-data.actions';
 import Cookies from 'js-cookie';
 
@@ -31,7 +31,7 @@ class App extends Component<Props, State> {
       <>
         {
           userData ?
-            <HomeView /> 
+            <Routing /> 
           :
             <LoginView /> 
         }
