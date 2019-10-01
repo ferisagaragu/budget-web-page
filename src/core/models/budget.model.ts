@@ -1,3 +1,5 @@
+import { BudgetTableModel } from "./budget-table.model";
+
 export class BudgetModel {
 
   uid: string;
@@ -8,6 +10,7 @@ export class BudgetModel {
   company: string;
   phoneNumber: string;
   address: string;
+  budgetTable?: Array<BudgetTableModel>;
 
   constructor(data: any | BudgetModel) {
     this.uid = '';
@@ -18,6 +21,7 @@ export class BudgetModel {
     this.company = '';
     this.phoneNumber = '';
     this.address = '';
+    this.budgetTable = [];
 
     Object.assign(this, data);
   }
