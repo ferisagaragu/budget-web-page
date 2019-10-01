@@ -69,7 +69,16 @@ class PdfView extends Component<Props, State> {
           <Page size="letter" style={ styles.page }>
             <View style={ styles.root }>
               <HeaderPdfComponent 
-                dataHeader={ new BudgetModel({}) }
+                dataHeader={ new BudgetModel({
+                  uid: '',
+                  name: '',
+                  date: new Date(),
+                  dateEnd: new Date(),
+                  for: 'Pedro man',
+                  company: 'FerGarGod',
+                  phoneNumber: '33 23 81 47 52',
+                  address: 'Valle de las flores 107'
+                }) }
               /> 
 
               <TablePdfComponent 

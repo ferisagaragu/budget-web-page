@@ -29,15 +29,15 @@ class HeaderPdfComponent extends Component<Props, State> {
       <>
         <View style={ styles.header }> 
           <Text style={ styles.headerText }>
-            Fecha: 01-05-2018
+            Fecha: { dataHeader.date.toString() }
           </Text> 
 
           <Text style={ styles.headerText }>
-            Fecha de vencimiento: 20-05-2018
+            Fecha de vencimiento: { dataHeader.date.toString() }
           </Text> 
 
           <Text style={ styles.headerText }>
-            Para: Víctor Morales
+            Para: { dataHeader.for }
           </Text> 
 
           <Text style={ styles.headerText }>
