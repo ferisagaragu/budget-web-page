@@ -6,8 +6,12 @@ import HeaderPdfComponent from './header-pdf/header-pdf.component';
 import { BudgetModel } from '../../core/models/budget.model';
 import FirmPdfComponent from './firm-pdf/firm-pdf.component';
 import TermPdfComponent from './term-pdf/term-pdf.component';
+import { UserDataModel } from '../../core/models/user-data.model';
 
-interface Props { }
+interface Props { 
+  userData: UserDataModel,
+  selectedBudget: BudgetModel
+}
 
 interface State { }
 
@@ -60,7 +64,14 @@ const dataTable = [{
 }]
 
 class PdfView extends Component<Props, State> {
+  
+  componentDidMount() {
+    console.log(this.props);
+  }
+  
   render() {
+    const { userData, selectedBudget } = this.props;
+
     return (
       <PDFViewer className="pdf">
         <Document 
@@ -86,8 +97,8 @@ class PdfView extends Component<Props, State> {
               /> 
 
               <FirmPdfComponent 
-                name="Fernando Isaías García Aguirre"
-                client="Fernando García Godina"
+                name={ userData.name }
+                client={ 'selectedBudget.for' }
               />
 
               <TermPdfComponent
@@ -108,8 +119,9 @@ class PdfView extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: any) => ({ 
-  //examepleGlobalState: state.examepleGlobalState
+const mapStateToProps = (state: any) => ({
+  userData: state.userData,
+  selectedBudget: state.selectedBudget
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({

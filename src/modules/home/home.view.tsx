@@ -3,7 +3,7 @@ import { connect } from '../../imports/react-redux.import';
 import HeaderView from '../header/header.view';
 import { Container, Row } from 'react-bootstrap';
 import AddBudgetComponent from './add-budget/add-budget.component';
-import { createBudget, getBudgets, dropBudget } from '../../core/actions/budget.actions';
+import { createBudget, getBudgets, dropBudget, setSelectedBudget } from '../../core/actions/budget.actions';
 import { UserDataModel } from '../../core/models/user-data.model';
 import { BudgetModel } from '../../core/models/budget.model';
 import ListBudgetComponent from './list-budget/list-budget.component';
@@ -15,6 +15,8 @@ interface Props {
   getBudgets: Function;
   createBudget: Function;
   dropBudget: Function;
+  setSelectedBudget: Function;
+  history: any;
 }
 
 interface State { }
@@ -39,7 +41,7 @@ class HomeView extends Component<Props, State> {
   }
 
   render() {
-    const { userData, createBudget, budgets } = this.props;
+    const { userData, createBudget, budgets, setSelectedBudget, history } = this.props;
 
     return (
       <>
@@ -54,6 +56,7 @@ class HomeView extends Component<Props, State> {
             <ListBudgetComponent 
               budgets={ budgets }
               onDrop={ (budgetId: string) => this.dropBudget(budgetId) }
+              onView={ (selectedBudget: BudgetModel) => { setSelectedBudget(selectedBudget); history.push('/pdf') } }
             />
           </Row>
         </Container>
@@ -70,7 +73,8 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (dispatch: Function) => ({
   getBudgets: (uid: string) => dispatch(getBudgets(uid)),
   createBudget: (uid: string, data: BudgetModel) => dispatch(createBudget(uid, data)),
-  dropBudget: (uid: string, budgetId: string) => dispatch(dropBudget(uid, budgetId))
+  dropBudget: (uid: string, budgetId: string) => dispatch(dropBudget(uid, budgetId)),
+  setSelectedBudget: (selectedbudget: BudgetModel) => dispatch(setSelectedBudget(selectedbudget))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(HomeView);

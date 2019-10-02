@@ -7,13 +7,14 @@ import './list-budget.css';
 interface Props {
   budgets: Array<BudgetModel>;
   onDrop: Function;
+  onView: Function;
 }
 
 interface State { }
 
 class ListBudgetComponent extends Component<Props, State> {
   render() {
-    const { budgets, onDrop } = this.props;
+    const { budgets, onDrop, onView } = this.props;
 
     return (
       budgets &&
@@ -24,6 +25,7 @@ class ListBudgetComponent extends Component<Props, State> {
                 key={ key() }
                 budget={ budget }
                 onDrop={ () => onDrop(budget.uid) }
+                onView={ () => onView(budget) }
               />
             ))
           }

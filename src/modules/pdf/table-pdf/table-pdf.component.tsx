@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from '@react-pdf/renderer';
 import { BudgetTableModel } from '../../../core/models/budget-table.model';
+import key from '../../../shared/key/react-elements.key';
 import './table-pdf.css';
 
 interface Props { 
@@ -88,7 +89,7 @@ class TablePdfComponent extends Component<Props, State> {
         
         {
           dataTable.map((data: BudgetTableModel) => (
-            <View style={ styles.tableRow }> 
+            <View key={ key() } style={ styles.tableRow }> 
               <View style={ styles.tableCol }> 
                 <Text style={ styles.tableCell }>
                   { data.description }

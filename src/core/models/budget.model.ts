@@ -10,7 +10,7 @@ export class BudgetModel {
   company: string;
   phoneNumber: string;
   address: string;
-  budgetTable?: Array<BudgetTableModel>;
+  budgetTable: Array<BudgetTableModel>;
 
   constructor(data: any | BudgetModel) {
     this.uid = '';

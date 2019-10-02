@@ -7,13 +7,14 @@ import './card-budget.css';
 interface Props { 
   budget: BudgetModel;
   onDrop: Function;
+  onView: Function;
 }
 
 interface State { }
 
 class CardBudgetComponent extends Component<Props, State> {
   render() {
-    const { budget, onDrop } = this.props;
+    const { budget, onDrop, onView } = this.props;
 
     return (
       <Col className="ml-3 mr-3 mt-3 mb-3" md={ 3 }>
@@ -41,7 +42,9 @@ class CardBudgetComponent extends Component<Props, State> {
             <Card.Text className="text-center mt-4">
               <Button 
                 variant="outline-info"
-                className="btn btn-circle btn-xl">
+                className="btn btn-circle btn-xl"
+                onClick={ () => onView() }
+              >
                   <FontAwesomeIcon icon="file-invoice" />
               </Button>
             </Card.Text>

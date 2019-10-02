@@ -9,6 +9,10 @@ export function setBudgets(payload: any): Action {
   return { type: BudgetReducerEnum.SET_BUDGETS, payload };
 }
 
+export function setSelectedBudget(payload: any): Action {
+  return { type: BudgetReducerEnum.SET_SELECTED_BUDGET, payload };
+}
+
 export function getBudgets(uid: string): Function {
   return async (dispatch: Function) => {
     budgetService.getBudgets(uid,
