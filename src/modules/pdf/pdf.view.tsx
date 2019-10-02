@@ -4,6 +4,7 @@ import { PDFViewer, Page, Text, View, Document, StyleSheet } from '@react-pdf/re
 import TablePdfComponent from './table-pdf/table-pdf.component';
 import HeaderPdfComponent from './header-pdf/header-pdf.component';
 import { BudgetModel } from '../../core/models/budget.model';
+import FirmPdfComponent from './firm-pdf/firm-pdf.component';
 
 interface Props { }
 
@@ -22,14 +23,8 @@ const styles = StyleSheet.create({
   text: {
     marginTop: 20,
     fontSize: 11
-  },
-
-  row: {
-    flexDirection: 'column'
-  },
-  section: {
-    flexGrow: 1
   }
+
 });
 
 const dataTable = [{
@@ -100,15 +95,10 @@ class PdfView extends Component<Props, State> {
                 Gracias por su transacción
               </Text> 
               
-              <View style={ styles.row }>
-                <View style={ styles.section }>
-                  <Text>Section #1</Text>
-                </View>
-
-                <View style={ styles.section }>
-                  <Text>Section #2</Text>
-                </View>
-              </View>
+              <FirmPdfComponent 
+                name="Fernando Isaías García Aguirre"
+                client="Fernando García Godina"
+              />
             </View>
           </Page>
         </Document>

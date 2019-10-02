@@ -4,8 +4,8 @@ export class BudgetModel {
 
   uid: string;
   name: string;
-  date: Date;
-  dateEnd: Date;
+  date: string;
+  dateEnd: string;
   for: string;
   company: string;
   phoneNumber: string;
@@ -15,8 +15,8 @@ export class BudgetModel {
   constructor(data: any | BudgetModel) {
     this.uid = '';
     this.name = '';
-    this.date = new Date();
-    this.dateEnd = new Date();
+    this.date = '';
+    this.dateEnd = '';
     this.for = '';
     this.company = '';
     this.phoneNumber = '';
