@@ -63,7 +63,9 @@ class PdfView extends Component<Props, State> {
   render() {
     return (
       <PDFViewer className="pdf">
-        <Document>
+        <Document 
+          title={ 'Nombre de prueba' }
+        >
           <Page size="letter" style={ styles.page }>
             <View style={ styles.root }>
               <HeaderPdfComponent 
@@ -83,18 +85,21 @@ class PdfView extends Component<Props, State> {
                 dataTable={ dataTable }
               /> 
 
+              <FirmPdfComponent 
+                name="Fernando Isaías García Aguirre"
+                client="Fernando García Godina"
+              />
+
               <TermPdfComponent
                 term={ 
+                  'Este es un presupuesto sobre los bienes nombrados, sujeto a las condiciones indicadas a continuación:' +
+                  'Para aceptar este presupuesto, firme aquí y envíenos este documento:' +
+                  'Gracias por su transacción' +
                   'Este es un presupuesto sobre los bienes nombrados, sujeto a las condiciones indicadas a continuación:' +
                   'Para aceptar este presupuesto, firme aquí y envíenos este documento:' +
                   'Gracias por su transacción'
                 }
               /> 
-              
-              <FirmPdfComponent 
-                name="Fernando Isaías García Aguirre"
-                client="Fernando García Godina"
-              />
             </View>
           </Page>
         </Document>

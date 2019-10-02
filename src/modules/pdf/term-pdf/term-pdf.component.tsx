@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet } from '@react-pdf/renderer';
+import { Text, View, StyleSheet } from '@react-pdf/renderer';
 import './term-pdf.css';
 
 interface Props { 
@@ -9,9 +9,20 @@ interface Props {
 interface State { }
 
 const styles = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+    flex: 1,
+    maxWidth: '100%'
+  },
   text: {
-    marginTop: 20,
-    fontSize: 11
+    fontSize: 11,
+    width: '100%', 
+    justifyContent: 'center', 
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 0,
+    marginBottom: 30,
+    color: '#616161'
   }
 });
 
@@ -20,9 +31,11 @@ class TermPdfComponent extends Component<Props, State> {
     const { term } = this.props;
 
     return (
-      <Text style={ styles.text }>
-        { term }
-      </Text> 
+      <View style={ styles.row }>
+        <Text style={ styles.text }>
+          { term }
+        </Text> 
+      </View>
     );
   }
 }

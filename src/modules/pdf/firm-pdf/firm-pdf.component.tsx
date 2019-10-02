@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginLeft: 35,
     marginRight: 35,
-    marginTop: 65
+    marginTop: 80
   },
   col: { 
     width: '45%', 
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingTop: 3
   }
-  
 });
 
 class FirmPdfComponent extends Component<Props, State> {
