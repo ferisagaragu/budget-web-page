@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from '../../imports/react-redux.import';
-import { PDFViewer, Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { PDFViewer, Page, View, Document, StyleSheet } from '@react-pdf/renderer';
 import TablePdfComponent from './table-pdf/table-pdf.component';
 import HeaderPdfComponent from './header-pdf/header-pdf.component';
 import { BudgetModel } from '../../core/models/budget.model';
 import FirmPdfComponent from './firm-pdf/firm-pdf.component';
+import TermPdfComponent from './term-pdf/term-pdf.component';
 
 interface Props { }
 
@@ -18,13 +19,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 15, 
     marginRight: 15,
-  },
-
-  text: {
-    marginTop: 20,
-    fontSize: 11
   }
-
 });
 
 const dataTable = [{
@@ -88,12 +83,13 @@ class PdfView extends Component<Props, State> {
                 dataTable={ dataTable }
               /> 
 
-              <Text style={ styles.text }>
-                Este es un presupuesto sobre los bienes nombrados, sujeto a las condiciones indicadas a continuación:
-
-                Para aceptar este presupuesto, firme aquí y envíenos este documento:
-                Gracias por su transacción
-              </Text> 
+              <TermPdfComponent
+                term={ 
+                  'Este es un presupuesto sobre los bienes nombrados, sujeto a las condiciones indicadas a continuación:' +
+                  'Para aceptar este presupuesto, firme aquí y envíenos este documento:' +
+                  'Gracias por su transacción'
+                }
+              /> 
               
               <FirmPdfComponent 
                 name="Fernando Isaías García Aguirre"

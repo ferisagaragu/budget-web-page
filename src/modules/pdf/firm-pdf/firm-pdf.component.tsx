@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginLeft: 35,
     marginRight: 35,
-    marginTop: 50
+    marginTop: 65
   },
   col: { 
     width: '45%', 
