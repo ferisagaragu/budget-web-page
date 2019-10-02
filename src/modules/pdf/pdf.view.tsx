@@ -26,43 +26,6 @@ const styles = StyleSheet.create({
   }
 });
 
-const dataTable = [{
-  description: 'Remplazo de cableado y rectificación de cableado',
-  unitPrice: '100 MNX',
-  pice: '12 pzas',
-  total: '12, 000 MNX' 
-},{
-  description: 'Remplazo de contactos y apagadores',
-  unitPrice: '100 MNX',
-  pice: '12 pzas',
-  total: '12, 000 MNX' 
-},{
-  description: 'Adecuación de líneas de alimentación, iluminación y contactos',
-  unitPrice: '3800 MNX',
-  pice: '1 pzas',
-  total: '3800 MNX' 
-},{
-  description: 'Adecuación de líneas de alimentación, iluminación y contactos',
-  unitPrice: '3800 MNX',
-  pice: '1 pzas',
-  total: '3800 MNX' 
-},{
-  description: 'Adecuación de líneas de alimentación, iluminación y contactos',
-  unitPrice: '3800 MNX',
-  pice: '1 pzas',
-  total: '3800 MNX' 
-},{
-  description: 'Adecuación de líneas de alimentación, iluminación y contactos',
-  unitPrice: '3800 MNX',
-  pice: '1 pzas',
-  total: '3800 MNX' 
-},{
-  description: 'Adecuación de líneas de alimentación, iluminación y contactos',
-  unitPrice: '3800 MNX',
-  pice: '1 pzas',
-  total: '3800 MNX' 
-}]
-
 class PdfView extends Component<Props, State> {
   
   componentDidMount() {
@@ -75,41 +38,25 @@ class PdfView extends Component<Props, State> {
     return (
       <PDFViewer className="pdf">
         <Document 
-          title={ 'Nombre de prueba' }
+          title={ selectedBudget.name }
         >
           <Page size="letter" style={ styles.page }>
             <View style={ styles.root }>
               <HeaderPdfComponent 
-                dataHeader={ new BudgetModel({
-                  uid: '',
-                  name: '',
-                  date: '02 - septiembre - 2019',
-                  dateEnd: '02 - septiembre - 2019',
-                  for: 'Pedro man',
-                  company: 'FerGarGod',
-                  phoneNumber: '33 23 81 47 52',
-                  address: 'Valle de las flores 107'
-                }) }
+                dataHeader={ selectedBudget }
               /> 
 
               <TablePdfComponent 
-                dataTable={ dataTable }
+                dataTable={ selectedBudget.budgetTable }
               /> 
 
               <FirmPdfComponent 
                 name={ userData.name }
-                client={ 'selectedBudget.for' }
+                client={ selectedBudget.for }
               />
 
               <TermPdfComponent
-                term={ 
-                  'Este es un presupuesto sobre los bienes nombrados, sujeto a las condiciones indicadas a continuación:' +
-                  'Para aceptar este presupuesto, firme aquí y envíenos este documento:' +
-                  'Gracias por su transacción' +
-                  'Este es un presupuesto sobre los bienes nombrados, sujeto a las condiciones indicadas a continuación:' +
-                  'Para aceptar este presupuesto, firme aquí y envíenos este documento:' +
-                  'Gracias por su transacción'
-                }
+                term={ selectedBudget.term }
               /> 
             </View>
           </Page>
@@ -119,10 +66,12 @@ class PdfView extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: any) => {
+  console.log(state);
+  return {
   userData: state.userData,
   selectedBudget: state.selectedBudget
-});
+}};
 
 const mapDispatchToProps = (dispatch: Function) => ({
   //getExamepleGlobalAction: (exampleParam: any) => dispatch(getExamepleGlobalAction(exampleParam))

@@ -7,3 +7,10 @@ export const budgets = (state = {}, action: Action) => {
     default: return state;
   }
 }
+
+export const selectedBudget = (state = {}, action: Action) => {
+  switch(action.type) {
+    case BudgetReducerEnum.SET_SELECTED_BUDGET: return action.payload;
+    default: return state;
+  }
+}

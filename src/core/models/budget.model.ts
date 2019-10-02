@@ -10,6 +10,7 @@ export class BudgetModel {
   company: string;
   phoneNumber: string;
   address: string;
+  term: string;
   budgetTable: Array<BudgetTableModel>;
 
   constructor(data: any | BudgetModel) {
@@ -21,6 +22,7 @@ export class BudgetModel {
     this.company = '';
     this.phoneNumber = '';
     this.address = '';
+    this.term = '';
     this.budgetTable = [];
 
     Object.assign(this, data);
