@@ -5,6 +5,7 @@ import { UserDataModel } from '../core/models/user-data.model';
 import Routing from '../core/routes/routing.routes';
 import { login } from '../core/actions/user-data.actions';
 import Cookies from 'js-cookie';
+import HeaderView from './header/header.view';
 
 interface Props { 
   userData: UserDataModel;
@@ -31,7 +32,10 @@ class App extends Component<Props, State> {
       <>
         {
           userData ?
-            <Routing /> 
+            <>
+              <HeaderView />
+              <Routing />
+            </>
           :
             <LoginView /> 
         }

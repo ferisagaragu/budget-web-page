@@ -11,7 +11,8 @@ import {
   faCalculator,
   faFileInvoice,
   faTrash,
-  faSave
+  faSave,
+  faFilePdf
 } from '@fortawesome/free-solid-svg-icons';
 
 const icons: any = [ 
@@ -27,7 +28,8 @@ const icons: any = [
   faCalculator,
   faFileInvoice,
   faTrash,
-  faSave
+  faSave,
+  faFilePdf
 ];
 
 export default icons;

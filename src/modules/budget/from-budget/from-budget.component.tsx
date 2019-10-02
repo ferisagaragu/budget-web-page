@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from '../../../imports/react-redux.import';
 import { renderTextField } from '../../../shared/redux-form/redux-render-fields.shared';
 import { FromBudgetReducerEnum } from '../../../core/enums/from-budget-reducer.enum';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Row, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './from-budget.css';
 
 interface Props { 
@@ -31,18 +32,34 @@ class FromBudgetComponent extends Component<Props, State> {
 
         <Row className="text-right">
           <Col md={ 12 }>
-            <button 
+            <Button 
+              className="mr-3"
+              variant="success"
               type="submit" 
               disabled={ submitting }
-            >
-              Save
-            </button>
+            > 
+              <FontAwesomeIcon icon="save" />
+              &nbsp;
+              Guardar
+            </Button>
 
-            <button 
+            <Button 
+              className="mr-3"
+              variant="info"
+            >
+              <FontAwesomeIcon icon="file-pdf" />
+              &nbsp;
+              Ver en PDF
+            </Button>
+
+            <Button 
+              variant="danger"
               onClick={ cancel }
             >
-              Cancel
-            </button>
+              <FontAwesomeIcon icon="times" />
+              &nbsp;
+              Cancelar
+            </Button>
           </Col>
         </Row>  
       </form>
