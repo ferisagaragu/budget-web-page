@@ -17,7 +17,8 @@ const styles = StyleSheet.create({
   },
   headerText: {
     marginTop: 5,
-    color: '#616161'
+    color: '#616161',
+    fontSize: 10
   }
 });
 
@@ -29,11 +30,11 @@ class HeaderPdfComponent extends Component<Props, State> {
       <>
         <View style={ styles.header }> 
           <Text style={ styles.headerText }>
-            Fecha: { dataHeader.date.toString() }
+            Fecha: { dataHeader.date }
           </Text> 
 
           <Text style={ styles.headerText }>
-            Fecha de vencimiento: { dataHeader.date.toString() }
+            Fecha de vencimiento: { dataHeader.dateEnd }
           </Text> 
 
           <Text style={ styles.headerText }>
@@ -41,16 +42,15 @@ class HeaderPdfComponent extends Component<Props, State> {
           </Text> 
 
           <Text style={ styles.headerText }>
-            FerGarGod
+            { dataHeader.company }
           </Text> 
 
           <Text style={ styles.headerText }>
-            Valle de los agapandos 107
-            Tlajomulco de Zuñiga 45640
+            { dataHeader.address }
           </Text>
 
           <Text style={ styles.headerText }>
-            3312405018
+            { dataHeader.phoneNumber }
           </Text>
         </View>
       </>

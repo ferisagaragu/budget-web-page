@@ -16,11 +16,19 @@ const styles = StyleSheet.create({
   root: {  
     marginTop: 10,
     marginLeft: 15, 
-    marginRight: 15
+    marginRight: 15,
   },
 
   text: {
-    marginTop: 10
+    marginTop: 20,
+    fontSize: 11
+  },
+
+  row: {
+    flexDirection: 'column'
+  },
+  section: {
+    flexGrow: 1
   }
 });
 
@@ -72,8 +80,8 @@ class PdfView extends Component<Props, State> {
                 dataHeader={ new BudgetModel({
                   uid: '',
                   name: '',
-                  date: new Date(),
-                  dateEnd: new Date(),
+                  date: '02 - septiembre - 2019',
+                  dateEnd: '02 - septiembre - 2019',
                   for: 'Pedro man',
                   company: 'FerGarGod',
                   phoneNumber: '33 23 81 47 52',
@@ -87,7 +95,20 @@ class PdfView extends Component<Props, State> {
 
               <Text style={ styles.text }>
                 Este es un presupuesto sobre los bienes nombrados, sujeto a las condiciones indicadas a continuación:
+
+                Para aceptar este presupuesto, firme aquí y envíenos este documento:
+                Gracias por su transacción
               </Text> 
+              
+              <View style={ styles.row }>
+                <View style={ styles.section }>
+                  <Text>Section #1</Text>
+                </View>
+
+                <View style={ styles.section }>
+                  <Text>Section #2</Text>
+                </View>
+              </View>
             </View>
           </Page>
         </Document>
