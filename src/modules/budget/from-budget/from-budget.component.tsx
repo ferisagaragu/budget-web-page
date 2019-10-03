@@ -8,6 +8,7 @@ import renderDatePicker from '../../../shared/redux-form/redux-render-datepicker
 import renderSingleSelect from '../../../shared/redux-form/redux-render-singleselect.shared';
 import GoogleSuggest from '../../../shared/redux-form/redux-render-googlesuggest.shared';
 import TableBudgetComponent from '../table-budget/table-budget.component';
+import { BudgetTableModel } from '../../../core/models/budget-table.model';
 import './from-budget.css';
 
 interface Props { 
@@ -17,13 +18,24 @@ interface Props {
   submitting: any;
   submitActions: Function;
   onAddTable: Function;
+  onEditTable: Function;
+  onDrop: Function;
 }
 
 interface State { }
 
 class FromBudgetComponent extends Component<Props, State> {
   render() {
-    const { initialValues, handleSubmit, cancel, submitting, submitActions, onAddTable } = this.props;
+    const { 
+      initialValues, 
+      handleSubmit, 
+      cancel, 
+      submitting, 
+      submitActions, 
+      onAddTable, 
+      onEditTable,
+      onDrop 
+    } = this.props;
 
     return (
       <form onSubmit={ handleSubmit(submitActions) }>
@@ -96,6 +108,8 @@ class FromBudgetComponent extends Component<Props, State> {
           <TableBudgetComponent 
             dataTable={ initialValues.budgetTable }
             onAddTable={ () => onAddTable() }
+            onEditTable={ (data: BudgetTableModel) => onEditTable(data) }
+            onDrop={ (index: number) => onDrop(index) }
           />
 
           <Col md={ 12 }>

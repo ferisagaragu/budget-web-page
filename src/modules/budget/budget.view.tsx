@@ -19,6 +19,7 @@ interface Props {
 
 interface State { 
   showModal: boolean;
+  editBudgetTable: BudgetTableModel;
 }
 
 class BudgetView extends Component<Props, State> {
@@ -28,7 +29,8 @@ class BudgetView extends Component<Props, State> {
     const { selectedBudget, history } = this.props;
 
     this.state = {
-      showModal: false
+      showModal: false,
+      editBudgetTable: new BudgetTableModel({})
     }
 
     if (!selectedBudget) {
@@ -67,9 +69,34 @@ class BudgetView extends Component<Props, State> {
     this.setState({ showModal: !showModal });
   }
 
+  private onEditTable(data: BudgetTableModel): void {
+    const { description, unitPrice, pice } = data;
+
+    this.setState({ 
+      showModal: true, 
+      editBudgetTable: new BudgetTableModel({
+        description,
+        unitPrice: unitPrice.replace(' MNX',''),
+        pice: pice.replace(' pza','')
+      })
+    });
+  }
+
+  private onDropTable(index: number): void {
+    const { selectedBudget } = this.props;
+
+    selectedBudget.budgetTable.forEach((data: BudgetTableModel, indexFor: number) => {
+      if (index === indexFor) {
+        selectedBudget.budgetTable.splice(indexFor, 1);
+      }
+    });
+
+    console.log(selectedBudget.budgetTable);
+  }
+
   render() {
     const { selectedBudget, updateBudget, userData } = this.props;
-    const { showModal } = this.state;
+    const { showModal, editBudgetTable } = this.state;
 
     return (
       <Container>
@@ -78,7 +105,8 @@ class BudgetView extends Component<Props, State> {
           modalShow={ showModal } 
           onHide={ () => this.setState({ showModal: !showModal }) } 
           body={
-            <FormElementTableComponent 
+            <FormElementTableComponent
+              initialValues={ editBudgetTable }
               submitActions={ (data: BudgetTableModel) => this.addTableElement(data) }
               cancel={ () => this.setState({ showModal: !showModal }) }
             />
@@ -92,7 +120,9 @@ class BudgetView extends Component<Props, State> {
               initialValues={ selectedBudget }
               submitActions={ (data: BudgetModel) => updateBudget(userData.uid, data) }
               cancel={ () => this.onCancel() }
-              onAddTable={ () => this.setState({ showModal: true }) } 
+              onAddTable={ () => this.setState({ showModal: true, editBudgetTable: new BudgetTableModel({}) }) } 
+              onEditTable={ (data: BudgetTableModel) =>  this.onEditTable(data) }
+              onDrop={ (index: number) => this.onDropTable(index) }
             />
           :
             <div>No hay un presupuesto seleccionado.</div>

@@ -8,6 +8,8 @@ import './table-budget.css';
 interface Props { 
   dataTable: Array<BudgetTableModel>;
   onAddTable: Function;
+  onEditTable: Function;
+  onDrop: Function;
 }
 
 interface State { 
@@ -25,7 +27,7 @@ class TableBudgetComponent extends Component<Props, State> {
   }
 
   render() {
-    const { dataTable, onAddTable } = this.props;
+    const { dataTable, onAddTable, onEditTable, onDrop } = this.props;
 
     return (
       <>
@@ -53,7 +55,7 @@ class TableBudgetComponent extends Component<Props, State> {
           <tbody>
             {
               dataTable &&
-                dataTable.map((data: BudgetTableModel) => (
+                dataTable.map((data: BudgetTableModel, index: number) => (
                   <tr 
                     className="text-center"
                     key={ key() }
@@ -78,7 +80,7 @@ class TableBudgetComponent extends Component<Props, State> {
                       <Button 
                         className="btn btn-circle btn-lg mr-3" 
                         variant="outline-info"
-                        onClick={ () => {} }
+                        onClick={ () => onEditTable(data) }
                       >
                         <FontAwesomeIcon icon="edit" />
                       </Button>
@@ -86,7 +88,7 @@ class TableBudgetComponent extends Component<Props, State> {
                       <Button 
                         className="btn btn-circle btn-lg" 
                         variant="outline-danger"
-                        onClick={ () => {} }
+                        onClick={ () => onDrop(index) }
                       >
                         <FontAwesomeIcon icon="trash" />
                       </Button>
