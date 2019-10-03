@@ -16,13 +16,14 @@ interface Props {
   cancel: any;
   submitting: any;
   submitActions: Function;
+  onAddTable: Function;
 }
 
 interface State { }
 
 class FromBudgetComponent extends Component<Props, State> {
   render() {
-    const { initialValues, handleSubmit, cancel, submitting, submitActions } = this.props;
+    const { initialValues, handleSubmit, cancel, submitting, submitActions, onAddTable } = this.props;
 
     return (
       <form onSubmit={ handleSubmit(submitActions) }>
@@ -94,6 +95,7 @@ class FromBudgetComponent extends Component<Props, State> {
 
           <TableBudgetComponent 
             dataTable={ initialValues.budgetTable }
+            onAddTable={ () => onAddTable() }
           />
 
           <Col md={ 12 }>
