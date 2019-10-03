@@ -26,10 +26,14 @@ class TableBudgetComponent extends Component<Props, State> {
   }
 
   private addTableElement(data: BudgetTableModel): void {
-    const { dataTable } = this.props;
+    let { dataTable } = this.props;
     const { showModal } = this.state;
     const { description, unitPrice, pice } = data;
     
+    if (!dataTable) {
+      dataTable = [];
+    }
+
     dataTable.push(new BudgetTableModel({
       description,
       unitPrice: `${unitPrice} MNX`,
@@ -136,10 +140,10 @@ class TableBudgetComponent extends Component<Props, State> {
         }
 
         {
-            !dataTable &&
-              <div className="text-center mb-5 no-results" >
-                No hay informacion en el presupuesto.
-              </div>
+          !dataTable &&
+            <div className="text-center mb-5 no-results" >
+              No hay informacion en el presupuesto.
+            </div>
         }
       </>
     );

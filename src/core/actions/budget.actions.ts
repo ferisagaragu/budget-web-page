@@ -33,6 +33,16 @@ export function createBudget(uid: string, data: any): Function {
   }
 }
 
+export function updateBudget(uid: string, data: any): Function {
+  return async (dispatch: Function) => {
+    budgetService.updateBudget(uid, data,
+      (error: string) => {
+        alert('error','Uppss', error);
+      }
+    );
+  }
+}
+
 export function dropBudget(uid: string, budgetId: string): Function {
   return async (dispatch: Function) => {
     budgetService.dropBudget(uid, budgetId, 
