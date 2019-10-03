@@ -3,9 +3,13 @@ import { Table, Col, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ModalComponent } from '../../../shared/modal/modal.component';
 import FormElementTableComponent from '../form-element-table/form-element-table.component';
+import { BudgetTableModel } from '../../../core/models/budget-table.model';
+import key from '../../../shared/key/react-elements.key';
 import './table-budget.css';
 
-interface Props { }
+interface Props { 
+  dataTable: Array<BudgetTableModel>;
+}
 
 interface State { 
   showModal: boolean;
@@ -22,6 +26,7 @@ class TableBudgetComponent extends Component<Props, State> {
   }
 
   render() {
+    const { dataTable } = this.props;
     const { showModal } = this.state;
 
     return (
@@ -49,7 +54,7 @@ class TableBudgetComponent extends Component<Props, State> {
           </Button>
         </Col>
 
-        <Table className="mb-5" responsive>
+        <Table responsive>
           <thead>
             <tr className="text-center">
               <th>Descripción</th>
@@ -61,31 +66,58 @@ class TableBudgetComponent extends Component<Props, State> {
           </thead>
 
           <tbody>
-            <tr className="text-center"> 
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>Table cell</td>
-              <td>
-                <Button 
-                  className="btn btn-circle btn-lg mr-3" 
-                  variant="outline-info"
-                  onClick={ () => {} }
-                >
-                  <FontAwesomeIcon icon="edit" />
-                </Button>
+            {
+              dataTable &&
+                dataTable.map((data: BudgetTableModel) => (
+                  <tr 
+                    className="text-center"
+                    key={ key() }
+                  > 
+                    <td>
+                      { data.description }
+                    </td>
+                    
+                    <td>
+                      { data.unitPrice }
+                    </td>
 
-                <Button 
-                  className="btn btn-circle btn-lg" 
-                  variant="outline-danger"
-                  onClick={ () => {} }
-                >
-                  <FontAwesomeIcon icon="trash" />
-                </Button>
-              </td>
-            </tr>
+                    <td>
+                      { data.pice }
+                    </td>
+
+                    <td>
+                      { data.total }
+                    </td>
+
+                    <td>
+                      <Button 
+                        className="btn btn-circle btn-lg mr-3" 
+                        variant="outline-info"
+                        onClick={ () => {} }
+                      >
+                        <FontAwesomeIcon icon="edit" />
+                      </Button>
+
+                      <Button 
+                        className="btn btn-circle btn-lg" 
+                        variant="outline-danger"
+                        onClick={ () => {} }
+                      >
+                        <FontAwesomeIcon icon="trash" />
+                      </Button>
+                    </td>
+                  </tr>
+                ))
+            }
           </tbody>
         </Table>
+        
+        {
+          dataTable.length === 0 &&
+            <div className="text-center mb-5 no-results" >
+              No hay informacion en el presupuesto.
+            </div>
+        }
       </>
     );
   }

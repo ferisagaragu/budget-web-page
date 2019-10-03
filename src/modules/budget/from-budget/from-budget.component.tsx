@@ -22,7 +22,7 @@ interface State { }
 
 class FromBudgetComponent extends Component<Props, State> {
   render() {
-    const { handleSubmit, cancel, submitting, submitActions } = this.props;
+    const { initialValues, handleSubmit, cancel, submitting, submitActions } = this.props;
 
     return (
       <form onSubmit={ handleSubmit(submitActions) }>
@@ -95,7 +95,9 @@ class FromBudgetComponent extends Component<Props, State> {
             />
           </Col>
 
-          <TableBudgetComponent />
+          <TableBudgetComponent 
+            dataTable={ initialValues.budgetTable }
+          />
 
           <Col md={ 12 }>
             <Field 

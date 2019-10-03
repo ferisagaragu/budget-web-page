@@ -3,8 +3,6 @@ import { reducerForm } from '../imports/react-redux.import';
 import { userData, statusLogin } from '../core/reducers/user-data.reducers';
 import { budgets, selectedBudget } from '../core/reducers/budget.reducers';
 import { UserDataModel } from '../core/models/user-data.model';
-import { BudgetModel } from '../core/models/budget.model';
-import { BudgetTableModel } from '../core/models/budget-table.model';
 
 export const reducers = combineReducers({
   form: reducerForm,
@@ -24,40 +22,5 @@ export const initState = {
   // userData: null,
   statusLogin: false,
   budgets: null,
-  selectedBudget: new BudgetModel({
-    uid: '',
-    name: 'Este es mi primer presupuesto',
-    date: '02 - septiembre - 2019',
-    dateEnd: '02 - septiembre - 2019',
-    for: 'Fernando Garcia Godina',
-    company: 'FerGarGod',
-    phoneNumber: '523323814752',
-    address: 'Valle de las flores 107',
-    term: 'Este es un presupuesto sobre los bienes nombrados, sujeto a las condiciones indicadas a continuación:' +
-    'Para aceptar este presupuesto, firme aquí y envíenos este documento:' +
-    'Gracias por su transacción' +
-    'Este es un presupuesto sobre los bienes nombrados, sujeto a las condiciones indicadas a continuación:' +
-    'Para aceptar este presupuesto, firme aquí y envíenos este documento:' +
-    'Gracias por su transacción',
-    budgetTable: [
-      new BudgetTableModel({
-        description: 'Remplazo de cableado y rectificación de cableado',
-        unitPrice: '100 MNX',
-        pice: '12 pzas',
-        total: '12, 000 MNX'
-      }),
-      new BudgetTableModel({
-        description: 'Remplazo de contactos y apagadores',
-        unitPrice: '100 MNX',
-        pice: '12 pzas',
-        total: '12, 000 MNX' 
-      }),
-      new BudgetTableModel({
-        description: 'Adecuación de líneas de alimentación, iluminación y contactos',
-        unitPrice: '3800 MNX',
-        pice: '1 pzas',
-        total: '3800 MNX'
-      }) 
-    ]
-  })
+  selectedBudget: null
 };

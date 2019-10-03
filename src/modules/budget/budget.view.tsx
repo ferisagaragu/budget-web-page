@@ -12,16 +12,31 @@ interface Props {
 interface State { }
 
 class BudgetView extends Component<Props, State> {
+  
+  constructor(props: Props) {
+    super(props);
+    const { selectedBudget, history } = this.props;
+
+    if (!selectedBudget) {
+      history.push('/home');
+    }
+  }
+
   render() {
     const { selectedBudget, history } = this.props;
 
     return (
       <Container>
-        <FromBudgetComponent
-          initialValues={ selectedBudget }
-          submitActions={ (data: any) => console.log(data) }
-          cancel={ () => history.push('/home') }
-        />
+        {
+          selectedBudget ? 
+            <FromBudgetComponent
+              initialValues={ selectedBudget }
+              submitActions={ (data: any) => console.log(data) }
+              cancel={ () => history.push('/home') }
+            />
+          :
+            <div>No hay un presupuesto seleccionado.</div>
+        }
       </Container>
     );
   }
