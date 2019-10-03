@@ -25,9 +25,24 @@ class TableBudgetComponent extends Component<Props, State> {
     }
   }
 
-  render() {
+  private addTableElement(data: BudgetTableModel): void {
     const { dataTable } = this.props;
     const { showModal } = this.state;
+    const { description, unitPrice, pice } = data;
+    
+    dataTable.push(new BudgetTableModel({
+      description,
+      unitPrice: `${unitPrice} MNX`,
+      pice: `${pice} pza`,
+      total: `${+unitPrice * +pice} MNX`
+    }));
+
+    this.setState({ showModal: !showModal });
+  }
+
+  render() {
+    const { showModal } = this.state;
+    const { dataTable } = this.props;
 
     return (
       <>
@@ -37,7 +52,7 @@ class TableBudgetComponent extends Component<Props, State> {
           onHide={ () => this.setState({ showModal: !showModal }) } 
           body={
             <FormElementTableComponent 
-              submitActions={ (data: any) => console.log(data) }
+              submitActions={ (data: any) => this.addTableElement(data) }
               cancel={ () => this.setState({ showModal: !showModal }) }
             />
           } 
@@ -113,10 +128,18 @@ class TableBudgetComponent extends Component<Props, State> {
         </Table>
         
         {
-          dataTable.length === 0 &&
-            <div className="text-center mb-5 no-results" >
-              No hay informacion en el presupuesto.
-            </div>
+          dataTable &&
+            dataTable.length === 0 &&
+              <div className="text-center mb-5 no-results" >
+                No hay informacion en el presupuesto.
+              </div>
+        }
+
+        {
+            !dataTable &&
+              <div className="text-center mb-5 no-results" >
+                No hay informacion en el presupuesto.
+              </div>
         }
       </>
     );

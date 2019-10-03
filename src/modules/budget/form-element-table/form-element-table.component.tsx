@@ -18,9 +18,7 @@ interface State { }
 
 class FormElementTableComponent extends Component<Props, State> {
   render() {
-    const { initialValues, handleSubmit, cancel, submitting, submitActions } = this.props;
-    
-    console.log(initialValues);
+    const { handleSubmit, cancel, submitting, submitActions } = this.props;
 
     return (
       <form onSubmit={ handleSubmit(submitActions) }>

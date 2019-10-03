@@ -27,11 +27,6 @@ const styles = StyleSheet.create({
 });
 
 class PdfView extends Component<Props, State> {
-  
-  componentDidMount() {
-    console.log(this.props);
-  }
-  
   render() {
     const { userData, selectedBudget } = this.props;
 
@@ -66,12 +61,10 @@ class PdfView extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: any) => {
-  console.log(state);
-  return {
+const mapStateToProps = (state: any) => ({
   userData: state.userData,
   selectedBudget: state.selectedBudget
-}};
+});
 
 const mapDispatchToProps = (dispatch: Function) => ({
   //getExamepleGlobalAction: (exampleParam: any) => dispatch(getExamepleGlobalAction(exampleParam))

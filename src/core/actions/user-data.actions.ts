@@ -24,7 +24,6 @@ export function login(email:string, password: string): Function {
       (userData: UserDataModel) => {
         dispatch(setLoginStatus(false));
         dispatch(setUserData(userData));
-        console.log(userData);
         toast('success', `Bienvenid@ ${userData.email}`);
       }, (errorMessage: any) => {
         dispatch(setLoginStatus(false));

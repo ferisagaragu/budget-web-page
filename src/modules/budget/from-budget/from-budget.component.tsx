@@ -27,13 +27,10 @@ class FromBudgetComponent extends Component<Props, State> {
     return (
       <form onSubmit={ handleSubmit(submitActions) }>
         <Row>
-          <Col md={ 12 }>
-            <Field 
-              className="form-control"
-              name="name"
-              component={ renderTextField }
-              label="Nombre del presupuesto"
-            />
+          <Col md={ 12 } className="mb-3">
+            <h3>
+              { initialValues.name }
+            </h3>
           </Col>
 
           <Col md={ 12 }>
@@ -101,14 +98,14 @@ class FromBudgetComponent extends Component<Props, State> {
 
           <Col md={ 12 }>
             <Field 
-              className="form-control terms mb-5"
+              className="form-control terms"
               name="term"
               component={ renderTextArea }
               label="Terminos y condiciones"
             />
           </Col>
 
-          <Col className="text-right mb-3" md={ 12 }>
+          <Col className="text-right mt-5 mb-3" md={ 12 }>
             <Button 
               className="mr-3"
               variant="success"
@@ -146,11 +143,41 @@ class FromBudgetComponent extends Component<Props, State> {
 
 const validate = (values: any) => {
   const errors = {
-    name: ''
+    date: '',
+    dateEnd: '',
+    for: '',
+    company: '',
+    phoneNumber: '',
+    address: '',
+    term: ''
   }
   
-  if (!values.name) {
-    errors.name = 'El nombre es requerido';
+  if (!values.date) {
+    errors.date = 'La fecha de inicio es requerida';
+  }
+
+  if (!values.dateEnd) {
+    errors.dateEnd = 'La fecha de final es requerida';
+  }
+
+  if (!values.for) {
+    errors.for = 'El destinatario es requerido';
+  }
+
+  if (!values.company) {
+    errors.company = 'La compañia es requerida';
+  }
+
+  if (!values.phoneNumber) {
+    errors.phoneNumber = 'El numero telefonico es requerido';
+  }
+
+  if (!values.address) {
+    errors.address = 'La direccion es requerida';
+  }
+
+  if (!values.term) {
+    errors.term = 'Los terminos y condiciones son requeridos';
   }
 
   return errors

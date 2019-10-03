@@ -1,6 +1,7 @@
 import PetitionService from "./petition";
 import Firebase from '../../shared/firebase/firebase.shared';
 import { BudgetModel } from "../models/budget.model";
+import { BudgetTableModel } from "../models/budget-table.model";
 
 class BudgetService {
 
@@ -30,7 +31,15 @@ class BudgetService {
               for: obj[prop].for,
               company: obj[prop].company,
               phoneNumber: obj[prop].phoneNumber,
-              address: obj[prop].address
+              address: obj[prop].address,
+              term: obj[prop].term,
+              budgetTable: obj[prop].budgetTable && 
+                obj[prop].budgetTable.map((data: any) => new BudgetTableModel({
+                  description: data.description,
+                  unitPrice: data.unitPrice,
+                  pice: data.pice,
+                  total: data.total
+                }))
             }));
           }
         }
@@ -42,6 +51,14 @@ class BudgetService {
 
   public createBudget(uid: string, data: any, onError: Function): void {
     this.firebase.push(`budgets/${uid}`, data,  
+      (error: any) => {
+        onError(error);
+      }
+    );
+  }
+
+  public updateBudget(uid: string, data: any, onError: Function): void {
+    this.firebase.update(`budgets/${uid}`, data,  
       (error: any) => {
         onError(error);
       }
