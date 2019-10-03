@@ -115,10 +115,14 @@ class Firebase {
     });
   }
 
-  public update(path: string, data: any, errorFunction?: Function | undefined): void {
-    firebase.database().ref(path).update(data,(error: any) => {
+  public update(path: string, data: any, onFunction?: Function, errorFunction?: Function | undefined): void {
+    firebase.database().ref(path).update(data, (error: any) => {
       if (errorFunction && error) {
         errorFunction(error);
+      } else {
+        if(onFunction) {
+          onFunction();
+        }
       }
     });
   }

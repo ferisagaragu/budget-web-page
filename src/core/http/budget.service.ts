@@ -57,8 +57,11 @@ class BudgetService {
     );
   }
 
-  public updateBudget(uid: string, data: any, onError: Function): void {
-    this.firebase.update(`budgets/${uid}/${data.uid}`, data,  
+  public updateBudget(uid: string, data: any,  onSuccess: Function, onError: Function): void {
+    this.firebase.update(`budgets/${uid}/${data.uid}`, data,
+      () => {
+        onSuccess();
+      }, 
       (error: any) => {
         onError(error);
       }

@@ -36,6 +36,9 @@ export function createBudget(uid: string, data: any): Function {
 export function updateBudget(uid: string, data: any): Function {
   return async (dispatch: Function) => {
     budgetService.updateBudget(uid, data,
+      () => {
+        alert('success', 'Presupuesto guardado', `El presupuesto "${data.name}" a sido guardado.`);
+      },
       (error: string) => {
         alert('error','Uppss', error);
       }
