@@ -2,24 +2,27 @@ import React, { Component } from 'react';
 import { connect } from '../../imports/react-redux.import';
 import FromBudgetComponent from './from-budget/from-budget.component';
 import { BudgetModel } from '../../core/models/budget.model';
+import { Container } from 'react-bootstrap';
 
 interface Props { 
   selectedBudget: BudgetModel;
+  history: any;
 }
 
 interface State { }
 
 class BudgetView extends Component<Props, State> {
   render() {
-    const { selectedBudget } = this.props;
+    const { selectedBudget, history } = this.props;
 
     return (
-      <>
+      <Container>
         <FromBudgetComponent
           initialValues={ selectedBudget }
-          handleSubmit={ (data: any) => console.log(data) }
+          submitActions={ (data: any) => console.log(data) }
+          cancel={ () => history.push('/home') }
         />
-      </>
+      </Container>
     );
   }
 }

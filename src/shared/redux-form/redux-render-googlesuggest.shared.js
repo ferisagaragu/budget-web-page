@@ -11,7 +11,7 @@ class GoogleSuggest extends Component {
 
 		this.state = {
 			search: "",
-			value: ""
+			value: props.input.value
     }
 	}
 	

@@ -53,7 +53,7 @@ class HomeView extends Component<Props, State> {
             <ListBudgetComponent 
               budgets={ budgets }
               onDrop={ (budgetId: string) => this.dropBudget(budgetId) }
-              onView={ (selectedBudget: BudgetModel) => { setSelectedBudget(selectedBudget); history.push('/pdf') } }
+              onView={ (selectedBudget: BudgetModel) => { setSelectedBudget(selectedBudget); history.push('/budget') } }
             />
           </Row>
         </Container>

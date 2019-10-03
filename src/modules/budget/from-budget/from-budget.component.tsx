@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from '../../../imports/react-redux.import';
-import { renderTextField, renderPhoneInput } from '../../../shared/redux-form/redux-render-fields.shared';
+import { renderTextField, renderPhoneInput, renderTextArea } from '../../../shared/redux-form/redux-render-fields.shared';
 import { FromBudgetReducerEnum } from '../../../core/enums/from-budget-reducer.enum';
 import { Col, Row, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import renderDatePicker from '../../../shared/redux-form/redux-render-datepicker.shared';
 import renderSingleSelect from '../../../shared/redux-form/redux-render-singleselect.shared';
 import GoogleSuggest from '../../../shared/redux-form/redux-render-googlesuggest.shared';
+import TableBudgetComponent from '../table-budget/table-budget.component';
 import './from-budget.css';
 
 interface Props { 
@@ -22,11 +23,11 @@ interface State { }
 class FromBudgetComponent extends Component<Props, State> {
   render() {
     const { handleSubmit, cancel, submitting, submitActions } = this.props;
-    
+
     return (
       <form onSubmit={ handleSubmit(submitActions) }>
         <Row>
-          <Col md={ 6 }>
+          <Col md={ 12 }>
             <Field 
               className="form-control"
               name="name"
@@ -35,18 +36,17 @@ class FromBudgetComponent extends Component<Props, State> {
             />
           </Col>
 
-          <Col md={ 6 }>
+          <Col md={ 12 }>
             <Field 
               className="form-control"
               name="date"
               component={ renderDatePicker }
               label="Fecha de creación"
               dateFormat="d - MMMM - yyyy"
-              disabled="disabled"
             />
           </Col>
 
-          <Col md={ 6 }>
+          <Col md={ 12 }>
             <Field 
               className="form-control"
               name="dateEnd"
@@ -56,7 +56,7 @@ class FromBudgetComponent extends Component<Props, State> {
             />
           </Col>
 
-          <Col md={ 3 }>
+          <Col md={ 12 }>
             <Field 
               className="form-control"
               name="for"
@@ -65,7 +65,7 @@ class FromBudgetComponent extends Component<Props, State> {
             />
           </Col>
 
-          <Col md={ 3 }>
+          <Col md={ 12 }>
             <Field 
               name="company"
               component={ renderSingleSelect }
@@ -76,7 +76,7 @@ class FromBudgetComponent extends Component<Props, State> {
             />
           </Col>
 
-          <Col md={ 3 }>
+          <Col md={ 12 }>
             <Field 
               className="form-control"
               name="phoneNumber"
@@ -86,7 +86,7 @@ class FromBudgetComponent extends Component<Props, State> {
             />
           </Col>
 
-          <Col md={ 5 }>
+          <Col md={ 12 }>
             <Field 
               className="form-control"
               name="address"
@@ -95,7 +95,18 @@ class FromBudgetComponent extends Component<Props, State> {
             />
           </Col>
 
-          <Col className="text-right" md={ 12 }>
+          <TableBudgetComponent />
+
+          <Col md={ 12 }>
+            <Field 
+              className="form-control terms mb-5"
+              name="term"
+              component={ renderTextArea }
+              label="Terminos y condiciones"
+            />
+          </Col>
+
+          <Col className="text-right mb-3" md={ 12 }>
             <Button 
               className="mr-3"
               variant="success"

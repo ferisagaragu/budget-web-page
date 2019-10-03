@@ -12,7 +12,9 @@ import {
   faFileInvoice,
   faTrash,
   faSave,
-  faFilePdf
+  faFilePdf,
+  faEdit,
+  faPlus
 } from '@fortawesome/free-solid-svg-icons';
 
 const icons: any = [ 
@@ -29,7 +31,9 @@ const icons: any = [
   faFileInvoice,
   faTrash,
   faSave,
-  faFilePdf
+  faFilePdf,
+  faEdit,
+  faPlus
 ];
 
 export default icons;

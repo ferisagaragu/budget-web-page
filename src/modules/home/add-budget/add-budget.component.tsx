@@ -47,8 +47,7 @@ class AddBudgetComponent extends Component<Props, State> {
                 { 
                   date: moment().format("DD - MMMM - YYYY"),
                   dateEnd: moment().format("DD - MMMM - YYYY"),
-                  company: { value: '1', label: 'FerGarGod' },
-                  phoneNumber: '523323814752'
+                  company: { value: '1', label: 'FerGarGod' }
                 } 
               } 
               cancel={ () => this.setState({ showModal: !showModal }) }
