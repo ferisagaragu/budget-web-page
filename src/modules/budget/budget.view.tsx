@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from '../../imports/react-redux.import';
 import FromBudgetComponent from './from-budget/from-budget.component';
+import { BudgetModel } from '../../core/models/budget.model';
 
-interface Props { }
+interface Props { 
+  selectedBudget: BudgetModel;
+}
 
 interface State { }
 
 class BudgetView extends Component<Props, State> {
   render() {
+    const { selectedBudget } = this.props;
+
     return (
       <>
-        <FromBudgetComponent 
-          handleSubmit={ () => {} }
+        <FromBudgetComponent
+          initialValues={ selectedBudget }
+          handleSubmit={ (data: any) => console.log(data) }
         />
       </>
     );
@@ -19,7 +25,7 @@ class BudgetView extends Component<Props, State> {
 }
 
 const mapStateToProps = (state: any) => ({ 
-  //examepleGlobalState: state.examepleGlobalState
+  selectedBudget: state.selectedBudget
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({

@@ -31,7 +31,7 @@ export const initState = {
     dateEnd: '02 - septiembre - 2019',
     for: 'Fernando Garcia Godina',
     company: 'FerGarGod',
-    phoneNumber: '33 23 81 47 52',
+    phoneNumber: '523323814752',
     address: 'Valle de las flores 107',
     term: 'Este es un presupuesto sobre los bienes nombrados, sujeto a las condiciones indicadas a continuación:' +
     'Para aceptar este presupuesto, firme aquí y envíenos este documento:' +
@@ -59,6 +59,5 @@ export const initState = {
         total: '3800 MNX'
       }) 
     ]
-  }),
-  data: 'Hola amigo'
+  })
 };

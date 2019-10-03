@@ -175,6 +175,7 @@ export const renderPhoneInput = (metaData: any) => {
     label,
     className,
     onKeyUp,
+    defaultCountry,
     meta: {
       error,
       warning,
@@ -201,7 +202,7 @@ export const renderPhoneInput = (metaData: any) => {
           onKeyUp={ onKeyUp }
           disabled={ disabled }
           masks={ { mx: '+.. (..) ..-..-..-..' } }
-          defaultCountry={ 'mx' }
+          defaultCountry={ defaultCountry }
         />
         {
           touched &&

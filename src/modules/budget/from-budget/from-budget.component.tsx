@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from '../../../imports/react-redux.import';
-import { renderTextField } from '../../../shared/redux-form/redux-render-fields.shared';
+import { renderTextField, renderPhoneInput } from '../../../shared/redux-form/redux-render-fields.shared';
 import { FromBudgetReducerEnum } from '../../../core/enums/from-budget-reducer.enum';
 import { Col, Row, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import renderDatePicker from '../../../shared/redux-form/redux-render-datepicker.shared';
+import renderSingleSelect from '../../../shared/redux-form/redux-render-singleselect.shared';
+import GoogleSuggest from '../../../shared/redux-form/redux-render-googlesuggest.shared';
 import './from-budget.css';
 
 interface Props { 
@@ -22,16 +25,77 @@ class FromBudgetComponent extends Component<Props, State> {
     
     return (
       <form onSubmit={ handleSubmit(submitActions) }>
-        
-        <Field 
-          className="form-control"
-          name="example"
-          component={ renderTextField }
-          label="example"
-        />
+        <Row>
+          <Col md={ 6 }>
+            <Field 
+              className="form-control"
+              name="name"
+              component={ renderTextField }
+              label="Nombre del presupuesto"
+            />
+          </Col>
 
-        <Row className="text-right">
-          <Col md={ 12 }>
+          <Col md={ 6 }>
+            <Field 
+              className="form-control"
+              name="date"
+              component={ renderDatePicker }
+              label="Fecha de creación"
+              dateFormat="d - MMMM - yyyy"
+              disabled="disabled"
+            />
+          </Col>
+
+          <Col md={ 6 }>
+            <Field 
+              className="form-control"
+              name="dateEnd"
+              label="Fecha de final"
+              component={ renderDatePicker }
+              dateFormat="d - MMMM - yyyy"
+            />
+          </Col>
+
+          <Col md={ 3 }>
+            <Field 
+              className="form-control"
+              name="for"
+              component={ renderTextField }
+              label="Para"
+            />
+          </Col>
+
+          <Col md={ 3 }>
+            <Field 
+              name="company"
+              component={ renderSingleSelect }
+              label="Compañia"
+              options={ [{ value: '1', label: 'FerGarGod' }, { value: '2', label: 'FerGarGod2' }] }
+              noOptionsMessage="No se encontraron coincidencias"
+              defaultValue={ { value: '1', label: 'FerGarGod' } }
+            />
+          </Col>
+
+          <Col md={ 3 }>
+            <Field 
+              className="form-control"
+              name="phoneNumber"
+              component={ renderPhoneInput }
+              label="Numero telefonico"
+              defaultCountry="mx"
+            />
+          </Col>
+
+          <Col md={ 5 }>
+            <Field 
+              className="form-control"
+              name="address"
+              component={ GoogleSuggest }
+              label="Direccion de la compañia"
+            />
+          </Col>
+
+          <Col className="text-right" md={ 12 }>
             <Button 
               className="mr-3"
               variant="success"
@@ -69,11 +133,11 @@ class FromBudgetComponent extends Component<Props, State> {
 
 const validate = (values: any) => {
   const errors = {
-    example: ''
+    name: ''
   }
   
-  if (!values.example) {
-    errors.example = 'example is requiered';
+  if (!values.name) {
+    errors.name = 'El nombre es requerido';
   }
 
   return errors

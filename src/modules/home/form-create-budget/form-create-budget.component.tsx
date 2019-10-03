@@ -82,6 +82,7 @@ class FormCreateBudgetComponent extends Component<Props, State> {
               name="phoneNumber"
               component={ renderPhoneInput }
               label="Numero telefonico"
+              defaultCountry="mx"
             />
           </Col>
 
