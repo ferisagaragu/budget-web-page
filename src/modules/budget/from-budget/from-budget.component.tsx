@@ -148,12 +148,12 @@ class FromBudgetComponent extends Component<Props, State> {
             </Button>
 
             <Button 
-              variant="danger"
+              variant="primary"
               onClick={ cancel }
             >
-              <FontAwesomeIcon icon="times" />
+              <FontAwesomeIcon icon="reply" />
               &nbsp;
-              Cancelar
+              Regresar
             </Button>
           </Col>
         </Row>  

@@ -54,8 +54,8 @@ class BudgetView extends Component<Props, State> {
     const { history } = this.props;
     alertQuestion(
       'question', 
-      'Cancelar la operacion', 
-      '¿Estas seguro que deceas cancelar la creacion del presupuesto?', 
+      'Regresar', 
+      '¿Estas seguro que deceas a la pantalla principal?', 
       () => {
         history.push('/home');
       }

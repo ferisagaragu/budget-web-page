@@ -11,6 +11,8 @@ export class BudgetModel {
   phoneNumber: string;
   address: string;
   term: string;
+  workforce: string;
+  total: string;
   budgetTable: Array<BudgetTableModel>;
 
   constructor(data: any | BudgetModel) {
@@ -23,6 +25,8 @@ export class BudgetModel {
     this.phoneNumber = '';
     this.address = '';
     this.term = '';
+    this.workforce = '';
+    this.total = '';
     this.budgetTable = [];
 
     Object.assign(this, data);
