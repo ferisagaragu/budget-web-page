@@ -37,6 +37,7 @@ export function updateBudget(uid: string, data: any): Function {
   return async (dispatch: Function) => {
     budgetService.updateBudget(uid, data,
       () => {
+        dispatch(setSelectedBudget(data));
         alert('success', 'Presupuesto guardado', `El presupuesto "${data.name}" a sido guardado.`);
       },
       (error: string) => {

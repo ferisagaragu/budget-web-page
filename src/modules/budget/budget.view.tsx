@@ -184,7 +184,7 @@ class BudgetView extends Component<Props, State> {
           selectedBudget ? 
             <FromBudgetComponent
               initialValues={ renderSelectedBudget }
-              submitActions={ (data: BudgetModel) => {updateBudget(userData.uid, data);     console.log(data); } }
+              submitActions={ (data: BudgetModel) => updateBudget(userData.uid, data) }
               cancel={ () => this.onCancel() }
               onAddTable={ () => this.setState({ showModal: true, mode: true, editBudgetTable: new BudgetTableModel({}) }) } 
               onEditTable={ (data: BudgetTableModel) =>  this.onEditTable(data) }

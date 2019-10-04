@@ -18,17 +18,6 @@ interface State {
 }
 
 class renderSingleSelect extends Component<Props, State> {
-
-  constructor(props: Props) {
-    super(props);
-
-    console.log(props);
-
-    this.state = {
-      defaultValue: this.props.defaultValue
-    }
-  }
-
   render () {
     const {
       input,

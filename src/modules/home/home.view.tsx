@@ -7,7 +7,7 @@ import { UserDataModel } from '../../core/models/user-data.model';
 import { BudgetModel } from '../../core/models/budget.model';
 import ListBudgetComponent from './list-budget/list-budget.component';
 import { alertQuestion } from '../../shared/swal/swal.shared';
-import { LoadingIndicatorComponent } from '../../shared/loading-indicator/loading-indicator';
+import LoadCardBudgetComponent from './load-card-budget/load-card-budget.component';
 
 interface Props { 
   userData: UserDataModel;
@@ -59,7 +59,7 @@ class HomeView extends Component<Props, State> {
                   onView={ (selectedBudget: BudgetModel) => { setSelectedBudget(selectedBudget); history.push('/budget') } }
                 />
               :
-                <LoadingIndicatorComponent />
+                <LoadCardBudgetComponent />
             }
           </Row>
         </Container>
