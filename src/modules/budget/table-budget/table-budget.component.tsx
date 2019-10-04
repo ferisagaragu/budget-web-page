@@ -76,7 +76,7 @@ class TableBudgetComponent extends Component<Props, State> {
                       { data.total }
                     </td>
 
-                    <td>
+                    <td className="actions-table">
                       <Button 
                         className="btn btn-circle btn-lg mr-3" 
                         variant="outline-info"

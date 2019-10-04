@@ -20,6 +20,7 @@ interface Props {
   onAddTable: Function;
   onEditTable: Function;
   onDrop: Function;
+  onPdf: Function;
 }
 
 interface State { }
@@ -34,8 +35,11 @@ class FromBudgetComponent extends Component<Props, State> {
       submitActions, 
       onAddTable, 
       onEditTable,
-      onDrop 
+      onDrop,
+      onPdf 
     } = this.props;
+
+    console.log(initialValues)
 
     return (
       <form onSubmit={ handleSubmit(submitActions) }>
@@ -82,7 +86,7 @@ class FromBudgetComponent extends Component<Props, State> {
               label="Compañia"
               options={ [{ value: '1', label: 'FerGarGod' }, { value: '2', label: 'FerGarGod2' }] }
               noOptionsMessage="No se encontraron coincidencias"
-              defaultValue={ { value: '1', label: 'FerGarGod' } }
+              defaultValue={ initialValues.company }
             />
           </Col>
 
@@ -136,6 +140,7 @@ class FromBudgetComponent extends Component<Props, State> {
             <Button 
               className="mr-3"
               variant="info"
+              onClick={ () => onPdf() }
             >
               <FontAwesomeIcon icon="file-pdf" />
               &nbsp;

@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 class HeaderPdfComponent extends Component<Props, State> {
   render() {
     const { dataHeader } = this.props;
-
+    
     return (
       <>
         <View style={ styles.header }> 
@@ -42,8 +42,8 @@ class HeaderPdfComponent extends Component<Props, State> {
           </Text> 
 
           <Text style={ styles.headerText }>
-            { dataHeader.company }
-          </Text> 
+            { dataHeader.company.label }
+          </Text>
 
           <Text style={ styles.headerText }>
             { dataHeader.address }

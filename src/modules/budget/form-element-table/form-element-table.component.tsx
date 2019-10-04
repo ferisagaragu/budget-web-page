@@ -12,13 +12,20 @@ interface Props {
   cancel: any;
   submitting: any;
   submitActions: Function;
+  mode: boolean;
 }
 
 interface State { }
 
 class FormElementTableComponent extends Component<Props, State> {
+
+  componentDidMount() {
+    const { submitActions } = this.props;
+    submitActions(1)
+  }
+
   render() {
-    const { handleSubmit, cancel, submitting, submitActions } = this.props;
+    const { handleSubmit, cancel, submitting, submitActions, mode } = this.props;
 
     return (
       <form onSubmit={ handleSubmit(submitActions) }>
@@ -47,25 +54,41 @@ class FormElementTableComponent extends Component<Props, State> {
 
         <Row>
           <Col className="text-right">
-            <Button 
-              className="mr-3"
-              type="submit" 
-              variant="success"
-              disabled={ submitting }
-            >
-              <FontAwesomeIcon icon="save" />
-              &nbsp;
-              Guardar
-            </Button>
-
-            <Button 
-              variant="danger"
-              onClick={ cancel }
-            >
-              <FontAwesomeIcon icon="times" />
-              &nbsp;
-              Cancelar
-            </Button>
+            
+            {
+              mode ? 
+                <Button 
+                  className="mr-3"
+                  type="submit" 
+                  variant="success"
+                  disabled={ submitting }
+                >
+                  <FontAwesomeIcon icon="save" />
+                  &nbsp;
+                  Guardar
+                </Button>
+              :
+                <Button 
+                  className="mr-3"
+                  type="submit" 
+                  variant="info"
+                  disabled={ submitting }
+                >
+                  <FontAwesomeIcon icon="edit" />
+                  &nbsp;
+                  Editar
+                </Button>
+              }
+              
+              
+              <Button 
+                variant="danger"
+                onClick={ cancel }
+              >
+                <FontAwesomeIcon icon="times" />
+                &nbsp;
+                Cancelar
+              </Button>
           </Col>
         </Row>
       </form>

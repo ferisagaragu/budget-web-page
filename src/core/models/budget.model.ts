@@ -7,7 +7,7 @@ export class BudgetModel {
   date: string;
   dateEnd: string;
   for: string;
-  company: string;
+  company: any;
   phoneNumber: string;
   address: string;
   term: string;
@@ -19,7 +19,7 @@ export class BudgetModel {
     this.date = '';
     this.dateEnd = '';
     this.for = '';
-    this.company = '';
+    this.company = {};
     this.phoneNumber = '';
     this.address = '';
     this.term = '';

@@ -11,3 +11,7 @@
 .no-results {
   width: 100%;
 }
+
+.actions-table {
+  width: 200px !important;
+}

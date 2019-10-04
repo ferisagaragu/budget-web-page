@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 class PdfView extends Component<Props, State> {
   render() {
     const { userData, selectedBudget } = this.props;
-
+    
     return (
       <PDFViewer className="pdf">
         <Document 
@@ -39,7 +39,7 @@ class PdfView extends Component<Props, State> {
             <View style={ styles.root }>
               <HeaderPdfComponent 
                 dataHeader={ selectedBudget }
-              /> 
+              />
 
               <TablePdfComponent 
                 dataTable={ selectedBudget.budgetTable }
