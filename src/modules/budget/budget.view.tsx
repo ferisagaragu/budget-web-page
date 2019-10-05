@@ -78,6 +78,7 @@ class BudgetView extends Component<Props, State> {
     const { selectedBudget } = this.props;
     const { showModal } = this.state;
     const { uid, description, unitPrice, pice } = data;
+    let total: number = 0;
 
     selectedBudget.budgetTable.push(new BudgetTableModel({
       uid,
@@ -87,13 +88,19 @@ class BudgetView extends Component<Props, State> {
       total: `${+unitPrice * +pice} MNX`
     }));
 
+    selectedBudget.budgetTable.forEach((element: BudgetTableModel) => {
+      total += +element.total.replace(' MNX','');
+    });
+    selectedBudget.total = `${total}`;
+
     this.setState({ showModal: !showModal });
   }
 
   private editTableElement(data: BudgetTableModel): void {
     const { selectedBudget } = this.props;
     const { showModal } = this.state;
-    let selected: number = -1; 
+    let selected: number = -1;
+    let total: number = 0;
 
     selectedBudget.budgetTable.forEach((element: BudgetTableModel, index: number) => {
       if (element.uid === data.uid) {
@@ -111,6 +118,11 @@ class BudgetView extends Component<Props, State> {
         total: `${+unitPrice * +pice} MNX`
       });
     }
+
+    selectedBudget.budgetTable.forEach((element: BudgetTableModel) => {
+      total += +element.total.replace(' MNX','');
+    });
+    selectedBudget.total = `${total}`;
 
     this.setState({ showModal: !showModal, renderSelectedBudget: selectedBudget });
   }

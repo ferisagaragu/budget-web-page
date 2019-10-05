@@ -80,7 +80,6 @@ class FormElementTableComponent extends Component<Props, State> {
                 </Button>
               }
               
-              
               <Button 
                 variant="danger"
                 onClick={ cancel }

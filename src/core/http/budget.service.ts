@@ -33,6 +33,8 @@ class BudgetService {
               phoneNumber: obj[prop].phoneNumber,
               address: obj[prop].address,
               term: obj[prop].term,
+              workforce: obj[prop].workforce ? obj[prop].workforce : '0 MNX',
+              total: obj[prop].total ? obj[prop].total : '0 MNX',
               budgetTable: obj[prop].budgetTable && 
                 obj[prop].budgetTable.map((data: any) => new BudgetTableModel({
                   description: data.description,

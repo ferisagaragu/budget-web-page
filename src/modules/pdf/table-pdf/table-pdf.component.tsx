@@ -6,6 +6,8 @@ import './table-pdf.css';
 
 interface Props { 
   dataTable: Array<BudgetTableModel>;
+  workforce: string;
+  total: string;
 }
 
 interface State { }
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
 
 class TablePdfComponent extends Component<Props, State> {
   render() {
-    const { dataTable } = this.props;
+    const { dataTable, workforce, total } = this.props;
 
     return (
       <>
@@ -130,7 +132,7 @@ class TablePdfComponent extends Component<Props, State> {
           
           <View style={ styles.tableCol }> 
             <Text style={ styles.tableCell }>
-              500 MNX
+              { workforce + ' MNX' }
             </Text> 
           </View> 
         </View>
@@ -148,7 +150,7 @@ class TablePdfComponent extends Component<Props, State> {
           
           <View style={ styles.tableCol }> 
             <Text style={ styles.tableCell }>
-              500 MNX
+              { (+total + +workforce) + ' MNX' }
             </Text> 
           </View> 
         </View>

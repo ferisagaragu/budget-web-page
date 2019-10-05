@@ -39,8 +39,6 @@ class FromBudgetComponent extends Component<Props, State> {
       onPdf 
     } = this.props;
 
-    console.log(initialValues)
-
     return (
       <form onSubmit={ handleSubmit(submitActions) }>
         <Row>
@@ -115,6 +113,16 @@ class FromBudgetComponent extends Component<Props, State> {
             onEditTable={ (data: BudgetTableModel) => onEditTable(data) }
             onDrop={ (index: number) => onDrop(index) }
           />
+
+          <Col md={ 12 }>
+            <Field 
+              className="form-control"
+              name="workforce"
+              component={ renderTextField }
+              label="Mano de obra"
+              type="number"
+            />
+          </Col>
 
           <Col md={ 12 }>
             <Field 

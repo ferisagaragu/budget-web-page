@@ -43,6 +43,8 @@ class PdfView extends Component<Props, State> {
 
               <TablePdfComponent 
                 dataTable={ selectedBudget.budgetTable }
+                workforce={ selectedBudget.workforce }
+                total={ selectedBudget.total }
               /> 
 
               <FirmPdfComponent 
