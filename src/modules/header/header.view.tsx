@@ -4,6 +4,7 @@ import { UserDataModel } from '../../core/models/user-data.model';
 import { Row, Col, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { logout } from '../../core/actions/user-data.actions';
+import { alertQuestion } from '../../shared/swal/swal.shared';
 
 interface Props { 
   userData: UserDataModel;
@@ -13,8 +14,22 @@ interface Props {
 interface State { }
 
 class HeaderView extends Component<Props, State> {
-  render() {
+  
+  private onLogout() {
     const { userData, logout } = this.props;
+    
+    alertQuestion(
+      'question',
+      'Cerrar sesión',
+      '¿Estas seguro que deseas cerrar sesión?',
+      () => {
+        logout(userData.name);
+      }
+    );
+  }
+  
+  render() {
+    const { userData } = this.props;
 
     return (
       <>
@@ -26,7 +41,7 @@ class HeaderView extends Component<Props, State> {
 
             <Col md={ 1 }>
               <Button 
-                onClick={ () => logout(userData.name) }
+                onClick={ () => this.onLogout() }
                 variant="outline-dark"
               >
                 <FontAwesomeIcon icon="sign-out-alt" />

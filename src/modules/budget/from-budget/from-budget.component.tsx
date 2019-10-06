@@ -3,7 +3,7 @@ import { Field, reduxForm } from '../../../imports/react-redux.import';
 import RenderTextField from '../../../shared/redux-form/redux-render-text-field.shared';
 import RenderTextArea from '../../../shared/redux-form/redux-render-text-area.shared';
 import { FromBudgetReducerEnum } from '../../../core/enums/from-budget-reducer.enum';
-import { Col, Row, Button } from 'react-bootstrap';
+import { Col, Row, Button, Alert } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import RenderDatePicker from '../../../shared/redux-form/redux-render-date-picker.shared';
 import renderSingleSelect from '../../../shared/redux-form/redux-render-single-select.shared';
@@ -136,6 +136,19 @@ class FromBudgetComponent extends Component<Props, State> {
               label="Terminos y condiciones"
             />
           </Col>
+
+          <Alert variant="info" className="alert-info">
+            <Alert.Heading>
+              <FontAwesomeIcon icon="info-circle" />
+              &nbsp;
+              !No lo olvides!
+            </Alert.Heading>
+
+            <p>
+              Debes guardar tus cambios antes de ver o descargar el PDF si no
+              estos no se mostraran en el.
+            </p>
+          </Alert>
 
           <Col className="text-right mt-5 mb-3" md={ 12 }>
             <Button 

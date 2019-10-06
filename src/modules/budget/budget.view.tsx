@@ -3,9 +3,9 @@ import { connect } from '../../imports/react-redux.import';
 import FromBudgetComponent from './from-budget/from-budget.component';
 import { BudgetModel } from '../../core/models/budget.model';
 import { Container } from 'react-bootstrap';
-import { updateBudget } from '../../core/actions/budget.actions';
+import { updateBudget, setSelectedBudget } from '../../core/actions/budget.actions';
 import { UserDataModel } from '../../core/models/user-data.model';
-import { alertQuestion } from '../../shared/swal/swal.shared';
+import { alertQuestion, alert } from '../../shared/swal/swal.shared';
 import { ModalComponent } from '../../shared/modal/modal.component';
 import FormElementTableComponent from './form-element-table/form-element-table.component';
 import { BudgetTableModel } from '../../core/models/budget-table.model';
@@ -28,6 +28,8 @@ interface State {
 
 class BudgetView extends Component<Props, State> {
   
+  loadExel: boolean = false;
+
   constructor(props: Props) {
     super(props);
     let { selectedBudget, history } = this.props;
@@ -93,7 +95,7 @@ class BudgetView extends Component<Props, State> {
     });
     selectedBudget.total = `${total}`;
 
-    this.setState({ showModal: !showModal });
+    this.setState({ showModal: !showModal, renderSelectedBudget: selectedBudget });
   }
 
   private editTableElement(data: BudgetTableModel): void {
@@ -161,8 +163,67 @@ class BudgetView extends Component<Props, State> {
     );
   }
 
+  private setExelDataTable(exelData: Array<BudgetTableModel>, error: string): void {
+    if (error) {
+      alert('error', 'Upps', 'Hubo un problema al cargar el .xlsx');
+      return;
+    }
+
+    alertQuestion(
+      'question', 
+      'Cargar información del .xlsx', 
+      '¿Estas seguro que deceas cargar la informacion del .xlsx? ' + 
+      'Al aceptar todos los datos actuales seran remplazados por los que contenga el .xlsx', 
+      () => {
+        const { 
+          uid,
+          name,
+          date,
+          dateEnd,
+          company,
+          phoneNumber,
+          address,
+          term,
+          workforce,
+          total
+        } = this.state.renderSelectedBudget;
+        
+        const data: BudgetModel = new BudgetModel({
+          uid,
+          name,
+          date,
+          dateEnd,
+          for: this.state.renderSelectedBudget.for,
+          company,
+          phoneNumber,
+          address,
+          term,
+          workforce,
+          total,
+          budgetTable: exelData
+        });
+
+        this.setState({ renderSelectedBudget: data });
+        this.loadExel = true;
+      }
+    );
+  }
+
+  private updateBudget(data: BudgetModel): void {
+    const { updateBudget, userData } = this.props;
+    const { renderSelectedBudget } = this.state;
+
+    if (this.loadExel) {
+      data.budgetTable = renderSelectedBudget.budgetTable;
+      updateBudget(userData.uid, data);
+      this.loadExel = false;
+    } else {
+      updateBudget(userData.uid, data);
+    }
+  }
+
   render() {
-    const { selectedBudget, updateBudget, userData } = this.props;
+    const { selectedBudget } = this.props;
     const { showModal, showModalPdf, editBudgetTable, renderSelectedBudget, mode } = this.state;
 
     return (
@@ -196,13 +257,13 @@ class BudgetView extends Component<Props, State> {
           selectedBudget ? 
             <FromBudgetComponent
               initialValues={ renderSelectedBudget }
-              submitActions={ (data: BudgetModel) => updateBudget(userData.uid, data) }
+              submitActions={ (data: BudgetModel) => this.updateBudget(data) }
               cancel={ () => this.onCancel() }
               onAddTable={ () => this.setState({ showModal: true, mode: true, editBudgetTable: new BudgetTableModel({}) }) } 
               onEditTable={ (data: BudgetTableModel) =>  this.onEditTable(data) }
               onDrop={ (index: number) => this.onDropTable(index) }
               onPdf={ () => this.setState({ showModalPdf: true }) }
-              onLoadFile={ (exelData: Array<BudgetTableModel>, error: string) => { console.log(exelData) } }
+              onLoadFile={ (exelData: Array<BudgetTableModel>, error: string) => this.setExelDataTable(exelData, error) }
             />
           :
             <div>No hay un presupuesto seleccionado.</div>
@@ -218,7 +279,8 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({
-  updateBudget: (uid: string, data: BudgetModel) => dispatch(updateBudget(uid, data))
+  updateBudget: (uid: string, data: BudgetModel) => dispatch(updateBudget(uid, data)),
+  setSelectedBudget: (data: BudgetModel) => dispatch(setSelectedBudget(data))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(BudgetView);

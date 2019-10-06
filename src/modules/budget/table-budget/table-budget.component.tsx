@@ -78,9 +78,9 @@ class TableBudgetComponent extends Component<Props, State> {
 
         out.push(new BudgetTableModel({
           description,
-          pice: `${pice ? pice : 0} MNX`,
-          unitPrice: `${unitPrice ? unitPrice : 0} pza`,
-          total: ((pice ? pice : 0) * (unitPrice ? unitPrice : 0))
+          pice: `${pice ? pice : 0} pza`,
+          unitPrice: `${unitPrice ? unitPrice : 0} MNX`,
+          total: `${((pice ? pice : 0) * (unitPrice ? unitPrice : 0))} MNX`
         }));
       });
     });
