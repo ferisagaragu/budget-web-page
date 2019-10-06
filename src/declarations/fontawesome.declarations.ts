@@ -15,7 +15,8 @@ import {
   faFilePdf,
   faEdit,
   faPlus,
-  faReply
+  faReply,
+  faFileExcel
 } from '@fortawesome/free-solid-svg-icons';
 
 const icons: any = [ 
@@ -35,7 +36,8 @@ const icons: any = [
   faFilePdf,
   faEdit,
   faPlus,
-  faReply
+  faReply,
+  faFileExcel
 ];
 
 export default icons;

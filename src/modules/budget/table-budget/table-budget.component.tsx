@@ -3,6 +3,7 @@ import { Table, Col, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BudgetTableModel } from '../../../core/models/budget-table.model';
 import key from '../../../shared/key/react-elements.key';
+import readXlsxFile from '../../../imports/read-xlsx-file.import';
 import './table-budget.css';
 
 interface Props { 
@@ -10,10 +11,44 @@ interface Props {
   onAddTable: Function;
   onEditTable: Function;
   onDrop: Function;
+  onLoadFile: Function;
 }
 
 interface State { 
   showModal: boolean;
+}
+
+const schema = {
+  'Descripcion': {
+    prop: 'description',
+    type: String,
+    required: true
+  },
+  'Precio unitario': {
+    prop: 'unitPrice',
+    type: Number,
+    required: true
+  },
+  'Numero de piezas': {
+    prop: 'pice',
+    type: Number,
+    required: true
+  },
+  'descripcion': {
+    prop: 'description',
+    type: String,
+    required: true
+  },
+  'precio unitario': {
+    prop: 'unitPrice',
+    type: Number,
+    required: true
+  },
+  'numero de piezas': {
+    prop: 'pice',
+    type: Number,
+    required: true
+  }
 }
 
 class TableBudgetComponent extends Component<Props, State> {
@@ -26,14 +61,52 @@ class TableBudgetComponent extends Component<Props, State> {
     }
   }
 
+  private onReadExelFile(evt: any): void {
+    const input = evt.target;
+    const { onLoadFile } = this.props;
+    const out: Array<BudgetTableModel> = [];
+    let errorOut: string = '';
+                
+    readXlsxFile(input.files[0],{ schema }).then(({ rows, error }: any) => {
+      if (error) {
+        errorOut = error;
+        return;
+      }
+
+      rows.forEach((element: any) => {
+        const { description, pice, unitPrice } = element;
+
+        out.push(new BudgetTableModel({
+          description,
+          pice: `${pice ? pice : 0} MNX`,
+          unitPrice: `${unitPrice ? unitPrice : 0} pza`,
+          total: ((pice ? pice : 0) * (unitPrice ? unitPrice : 0))
+        }));
+      });
+    });
+    
+    input.value = input.defaultValue;
+    onLoadFile(out, errorOut);
+  }
+
   render() {
     const { dataTable, onAddTable, onEditTable, onDrop } = this.props;
 
     return (
       <>
         <Col className="text-right mt-5 mb-3" >
+          <span className="btn btn-outline-success btn-circle btn-lg btn-file mr-3">
+            <FontAwesomeIcon icon="file-excel" />
+
+            <input 
+              type="file" 
+              accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" 
+              onChange={ (evt: any) => this.onReadExelFile(evt) } 
+            />
+          </span>
+          
           <Button 
-            className="btn btn-circle btn-lg mr-3" 
+            className="btn btn-circle btn-lg" 
             variant="outline-success"
             onClick={ () => onAddTable() }
           >

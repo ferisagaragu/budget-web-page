@@ -1,4 +1,4 @@
-.btn-circle.btn-lg  {
+.btn-circle .btn-lg  {
   width: 30px;
   height: 30px;
   text-align: center;
@@ -15,3 +15,33 @@
 .actions-table {
   width: 200px !important;
 }
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;   
+  cursor: inherit;
+  display: block;
+}
+
+/*[type="file"] {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}*/

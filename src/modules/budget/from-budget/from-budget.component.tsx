@@ -22,6 +22,7 @@ interface Props {
   onEditTable: Function;
   onDrop: Function;
   onPdf: Function;
+  onLoadFile: Function;
 }
 
 interface State { }
@@ -37,7 +38,8 @@ class FromBudgetComponent extends Component<Props, State> {
       onAddTable, 
       onEditTable,
       onDrop,
-      onPdf 
+      onPdf,
+      onLoadFile 
     } = this.props;
 
     return (
@@ -113,6 +115,7 @@ class FromBudgetComponent extends Component<Props, State> {
             onAddTable={ () => onAddTable() }
             onEditTable={ (data: BudgetTableModel) => onEditTable(data) }
             onDrop={ (index: number) => onDrop(index) }
+            onLoadFile={ (data: Array<BudgetTableModel>, error: string) => onLoadFile(data, error) }
           />
 
           <Col md={ 12 }>

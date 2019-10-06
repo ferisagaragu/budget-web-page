@@ -50,18 +50,6 @@ class BudgetView extends Component<Props, State> {
     }
   }
 
-  private onCancel(): void {
-    const { history } = this.props;
-    alertQuestion(
-      'question', 
-      'Regresar', 
-      '¿Estas seguro que deceas a la pantalla principal?', 
-      () => {
-        history.push('/home');
-      }
-    );
-  }
-
   private setMode(data: BudgetTableModel): void {
     const { mode } = this.state;
 
@@ -72,6 +60,18 @@ class BudgetView extends Component<Props, State> {
         this.editTableElement(data);
       }
     }
+  }
+
+  private onCancel(): void {
+    const { history } = this.props;
+    alertQuestion(
+      'question', 
+      'Regresar', 
+      '¿Estas seguro que deceas a la pantalla principal?', 
+      () => {
+        history.push('/home');
+      }
+    );
   }
 
   private addTableElement(data: BudgetTableModel): void {
@@ -202,6 +202,7 @@ class BudgetView extends Component<Props, State> {
               onEditTable={ (data: BudgetTableModel) =>  this.onEditTable(data) }
               onDrop={ (index: number) => this.onDropTable(index) }
               onPdf={ () => this.setState({ showModalPdf: true }) }
+              onLoadFile={ (exelData: Array<BudgetTableModel>, error: string) => { console.log(exelData) } }
             />
           :
             <div>No hay un presupuesto seleccionado.</div>
