@@ -44,26 +44,24 @@ class HomeView extends Component<Props, State> {
     const { userData, createBudget, budgets, setSelectedBudget, history } = this.props;
 
     return (
-      <>
-        <Container>
-          <Row className="justify-content-md-center">
-            <AddBudgetComponent 
-              submitActions={ (formData: BudgetModel) => { createBudget(userData.uid, formData) } }
-            />
+      <Container>
+        <Row className="justify-content-md-center">
+          <AddBudgetComponent 
+            submitActions={ (formData: BudgetModel) => { createBudget(userData.uid, formData) } }
+          />
 
-            {
-              budgets ? 
-                <ListBudgetComponent 
-                  budgets={ budgets }
-                  onDrop={ (budgetId: string) => this.dropBudget(budgetId) }
-                  onView={ (selectedBudget: BudgetModel) => { setSelectedBudget(selectedBudget); history.push('/budget') } }
-                />
-              :
-                <LoadCardBudgetComponent />
-            }
-          </Row>
-        </Container>
-      </>
+          {
+            budgets ? 
+              <ListBudgetComponent 
+                budgets={ budgets }
+                onDrop={ (budgetId: string) => this.dropBudget(budgetId) }
+                onView={ (selectedBudget: BudgetModel) => { setSelectedBudget(selectedBudget); history.push('/budget') } }
+              />
+            :
+              <LoadCardBudgetComponent />
+          }
+        </Row>
+      </Container>
     );
   }
 }

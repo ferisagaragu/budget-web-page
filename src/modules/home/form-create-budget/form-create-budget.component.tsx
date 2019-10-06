@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from '../../../imports/react-redux.import';
-import { renderTextField, renderPhoneInput } from '../../../shared/redux-form/redux-render-fields.shared';
 import { FormCreateBudgetReducerEnum } from '../../../core/enums/form-create-budget-reducer.enum';
-import renderDatePicker from '../../../shared/redux-form/redux-render-datepicker.shared';
+import RenderDatePicker from '../../../shared/redux-form/redux-render-date-picker.shared';
 import { Button, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import renderSingleSelect from '../../../shared/redux-form/redux-render-singleselect.shared';
-import GoogleSuggest from '../../../shared/redux-form/redux-render-googlesuggest.shared';
+import renderSingleSelect from '../../../shared/redux-form/redux-render-single-select.shared';
+import GoogleSuggest from '../../../shared/redux-form/redux-render-google-suggest.shared';
+import RenderTextField from '../../../shared/redux-form/redux-render-text-field.shared';
 import './form-create-budget.css';
 
 interface Props { 
@@ -30,7 +30,7 @@ class FormCreateBudgetComponent extends Component<Props, State> {
             <Field 
               className="form-control"
               name="name"
-              component={ renderTextField }
+              component={ RenderTextField }
               label="Nombre del presupuesto"
             />
           </Col>
@@ -39,7 +39,7 @@ class FormCreateBudgetComponent extends Component<Props, State> {
             <Field 
               className="form-control"
               name="date"
-              component={ renderDatePicker }
+              component={ RenderDatePicker }
               label="Fecha de creación"
               dateFormat="d - MMMM - yyyy"
               disabled="disabled"
@@ -51,7 +51,7 @@ class FormCreateBudgetComponent extends Component<Props, State> {
               className="form-control"
               name="dateEnd"
               label="Fecha de final"
-              component={ renderDatePicker }
+              component={ RenderDatePicker }
               dateFormat="d - MMMM - yyyy"
             />
           </Col>
@@ -60,7 +60,7 @@ class FormCreateBudgetComponent extends Component<Props, State> {
             <Field 
               className="form-control"
               name="for"
-              component={ renderTextField }
+              component={ RenderTextField }
               label="Para"
             />
           </Col>
@@ -80,9 +80,9 @@ class FormCreateBudgetComponent extends Component<Props, State> {
             <Field 
               className="form-control"
               name="phoneNumber"
-              component={ renderPhoneInput }
+              component={ RenderTextField }
               label="Numero telefonico"
-              defaultCountry="mx"
+              type="number"
             />
           </Col>
 

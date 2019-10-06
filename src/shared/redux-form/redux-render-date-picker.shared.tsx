@@ -19,7 +19,7 @@ interface State {
   startDate: Date;
 }
 
-class renderDatePicker extends Component<Props, State> {
+class RenderDatePicker extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
@@ -89,4 +89,4 @@ class renderDatePicker extends Component<Props, State> {
   }
 }
 
-export default renderDatePicker;
+export default RenderDatePicker;

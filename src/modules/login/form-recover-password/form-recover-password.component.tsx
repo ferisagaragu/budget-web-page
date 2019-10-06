@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from '../../../imports/react-redux.import';
-import { renderTextField } from '../../../shared/redux-form/redux-render-fields.shared';
+import RenderTextField from '../../../shared/redux-form/redux-render-image-text-field.shared';
 import { FormRecoverPasswordReducerEnum } from '../../../core/enums/form-recover-password-reducer.enum';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -25,7 +25,7 @@ class FormRecoverPasswordComponent extends Component<Props, State> {
         <Field 
           className="form-control"
           name="email"
-          component={ renderTextField }
+          component={ RenderTextField }
           label="Correo electronico"
           type="email"
         />

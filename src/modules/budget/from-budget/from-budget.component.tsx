@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from '../../../imports/react-redux.import';
-import { renderTextField, renderPhoneInput, renderTextArea } from '../../../shared/redux-form/redux-render-fields.shared';
+import RenderTextField from '../../../shared/redux-form/redux-render-text-field.shared';
+import RenderTextArea from '../../../shared/redux-form/redux-render-text-area.shared';
 import { FromBudgetReducerEnum } from '../../../core/enums/from-budget-reducer.enum';
 import { Col, Row, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import renderDatePicker from '../../../shared/redux-form/redux-render-datepicker.shared';
-import renderSingleSelect from '../../../shared/redux-form/redux-render-singleselect.shared';
-import GoogleSuggest from '../../../shared/redux-form/redux-render-googlesuggest.shared';
+import RenderDatePicker from '../../../shared/redux-form/redux-render-date-picker.shared';
+import renderSingleSelect from '../../../shared/redux-form/redux-render-single-select.shared';
+import GoogleSuggest from '../../../shared/redux-form/redux-render-google-suggest.shared';
 import TableBudgetComponent from '../table-budget/table-budget.component';
 import { BudgetTableModel } from '../../../core/models/budget-table.model';
 import './from-budget.css';
@@ -52,7 +53,7 @@ class FromBudgetComponent extends Component<Props, State> {
             <Field 
               className="form-control"
               name="date"
-              component={ renderDatePicker }
+              component={ RenderDatePicker }
               label="Fecha de creación"
               dateFormat="d - MMMM - yyyy"
             />
@@ -63,7 +64,7 @@ class FromBudgetComponent extends Component<Props, State> {
               className="form-control"
               name="dateEnd"
               label="Fecha de final"
-              component={ renderDatePicker }
+              component={ RenderDatePicker }
               dateFormat="d - MMMM - yyyy"
             />
           </Col>
@@ -72,7 +73,7 @@ class FromBudgetComponent extends Component<Props, State> {
             <Field 
               className="form-control"
               name="for"
-              component={ renderTextField }
+              component={ RenderTextField }
               label="Para"
             />
           </Col>
@@ -92,9 +93,9 @@ class FromBudgetComponent extends Component<Props, State> {
             <Field 
               className="form-control"
               name="phoneNumber"
-              component={ renderPhoneInput }
+              component={ RenderTextField }
               label="Numero telefonico"
-              defaultCountry="mx"
+              type="number"
             />
           </Col>
 
@@ -118,7 +119,7 @@ class FromBudgetComponent extends Component<Props, State> {
             <Field 
               className="form-control"
               name="workforce"
-              component={ renderTextField }
+              component={ RenderTextField }
               label="Mano de obra"
               type="number"
             />
@@ -128,7 +129,7 @@ class FromBudgetComponent extends Component<Props, State> {
             <Field 
               className="form-control terms"
               name="term"
-              component={ renderTextArea }
+              component={ RenderTextArea }
               label="Terminos y condiciones"
             />
           </Col>

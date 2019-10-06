@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from '../../../imports/react-redux.import';
-import { renderTextField } from '../../../shared/redux-form/redux-render-fields.shared';
+import RenderTextField from '../../../shared/redux-form/redux-render-text-field.shared';
 import { FormElementTableReducerEnum } from '../../../core/enums/form-element-table-reducer.enum';
 import { Row, Col, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -32,7 +32,7 @@ class FormElementTableComponent extends Component<Props, State> {
         <Field 
           className="form-control"
           name="description"
-          component={ renderTextField }
+          component={ RenderTextField }
           label="Descripción"
         />
 
@@ -40,7 +40,7 @@ class FormElementTableComponent extends Component<Props, State> {
           className="form-control"
           name="unitPrice"
           type="number"
-          component={ renderTextField }
+          component={ RenderTextField }
           label="Precio unitario"
         />
 
@@ -48,7 +48,7 @@ class FormElementTableComponent extends Component<Props, State> {
           className="form-control"
           name="pice"
           type="number"
-          component={ renderTextField }
+          component={ RenderTextField }
           label="Numero de piezas"
         />
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from '../../../imports/react-redux.import';
-import { renderTextField } from '../../../shared/redux-form/redux-render-fields.shared';
+import RenderTextField from '../../../shared/redux-form/redux-render-text-field.shared';
 import { FormLoginReducerEnum } from '../../../core/enums/form-login-reducer.enum';
 import { Button, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -41,7 +41,7 @@ class FormLoginComponent extends Component<Props, State> {
           className="form-control"
           name="email"
           type="email"
-          component={ renderTextField }
+          component={ RenderTextField }
           label="Nombre de usuario"
         />
 
@@ -49,7 +49,7 @@ class FormLoginComponent extends Component<Props, State> {
           className="form-control"
           name="password"
           type="password"
-          component={ renderTextField }
+          component={ RenderTextField }
           label="Contraseña"
         />
 

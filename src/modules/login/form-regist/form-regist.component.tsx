@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from '../../../imports/react-redux.import';
-import { renderTextField, renderImageTextField } from '../../../shared/redux-form/redux-render-fields.shared';
+import RenderImageTextField from '../../../shared/redux-form/redux-render-image-text-field.shared';
+import RenderTextField from '../../../shared/redux-form/redux-render-text-field.shared';
 import { FormRegistReducerEnum } from '../../../core/enums/form-regist-reducer.enum';
 import { Button, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -46,7 +47,7 @@ class FormRegistComponent extends Component<Props, State> {
           name="img"
           type="text"
           img={ img }
-          component={ renderImageTextField }
+          component={ RenderImageTextField }
           label="Imagen de usuario"
           onKeyUp={ (evt: any) => this.setState({ img: evt.target.value }) }
         />
@@ -55,7 +56,7 @@ class FormRegistComponent extends Component<Props, State> {
           className="form-control"
           name="name"
           type="text"
-          component={ renderTextField }
+          component={ RenderTextField }
           label="Nombre de usuario"
         />
 
@@ -63,7 +64,7 @@ class FormRegistComponent extends Component<Props, State> {
           className="form-control"
           name="email"
           type="email"
-          component={ renderTextField }
+          component={ RenderTextField }
           label="Correo"
         />
 
@@ -71,7 +72,7 @@ class FormRegistComponent extends Component<Props, State> {
           className="form-control"
           name="password"
           type="password"
-          component={ renderTextField }
+          component={ RenderTextField }
           label="Contraseña"
         />
 

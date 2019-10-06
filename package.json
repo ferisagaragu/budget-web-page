@@ -29,7 +29,6 @@
     "react-dom": "^16.9.0",
     "react-google-maps-loader": "^4.2.6",
     "react-google-places-suggest": "^3.8.0",
-    "react-phone-input-2": "^2.10.0",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.2",
@@ -51,7 +50,8 @@
     "eject": "react-scripts eject",
     "reactive": "java -jar .reactive.jar",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "firebase-deploy": "yarn build & firebase deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
