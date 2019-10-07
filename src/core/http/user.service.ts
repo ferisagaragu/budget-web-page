@@ -1,17 +1,12 @@
-import PetitionService from "./petition";
 import { UserDataModel } from "../models/user-data.model";
 import Cookies from 'js-cookie';
 import Firebase from '../../shared/firebase/firebase.shared';
 
 class UserService {
 
-  private petition: PetitionService;
-  private baseUrl: string;
   private firebase: Firebase;
 
   constructor() {
-    this.petition = new PetitionService();
-    this.baseUrl = this.petition.baseUrl;
     this.firebase = new Firebase();
   }
 

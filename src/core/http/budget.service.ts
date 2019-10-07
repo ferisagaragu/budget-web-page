@@ -1,4 +1,3 @@
-import PetitionService from "./petition";
 import Firebase from '../../shared/firebase/firebase.shared';
 import { BudgetModel } from "../models/budget.model";
 import { BudgetTableModel } from "../models/budget-table.model";
@@ -6,13 +5,9 @@ import key from "../../shared/key/react-elements.key";
 
 class BudgetService {
 
-  private petition: PetitionService;
-  private baseUrl: string;
   private firebase: Firebase;
 
   constructor() {
-    this.petition = new PetitionService();
-    this.baseUrl = this.petition.baseUrl;
     this.firebase = new Firebase();
   }
 

@@ -5,7 +5,7 @@ import { ModalComponent } from '../../../shared/modal/modal.component';
 import FormCreateBudgetComponent from '../form-create-budget/form-create-budget.component';
 import moment from 'moment';
 import { BudgetModel } from '../../../core/models/budget.model';
-import FormCreateCompanyComponent from '../form-create-company/form-create-company.component';
+import CompanyView from '../../company/company.view';
 import './add-budget.css';
 
 interface Props { 
@@ -65,13 +65,9 @@ class AddBudgetComponent extends Component<Props, State> {
           title="Crear una nueva compañia"
           modalShow={ showModalCompany }
           body={ 
-            <FormCreateCompanyComponent
-              initialValues={ 
-                {} 
-              } 
-              cancel={ () => this.setState({ showModalCompany: !showModalCompany }) }
-              submitActions={ (formData: BudgetModel) => {} }
-            /> 
+            <>
+              <CompanyView />
+            </>
           }
           onHide={ () => this.setState({ showModalCompany: !showModalCompany }) }
           size="xl"
