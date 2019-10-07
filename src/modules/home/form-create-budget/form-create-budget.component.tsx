@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import renderSingleSelect from '../../../shared/redux-form/redux-render-single-select.shared';
 import GoogleSuggest from '../../../shared/redux-form/redux-render-google-suggest.shared';
 import RenderTextField from '../../../shared/redux-form/redux-render-text-field.shared';
+import RenderMaskField from '../../../shared/redux-form/redux-render-mask-field.shared';
 import './form-create-budget.css';
 
 interface Props { 
@@ -77,12 +78,12 @@ class FormCreateBudgetComponent extends Component<Props, State> {
           </Col>
 
           <Col md={ 3 }>
-            <Field 
+          <Field 
               className="form-control"
               name="phoneNumber"
-              component={ RenderTextField }
+              component={ RenderMaskField }
               label="Numero telefonico"
-              type="number"
+              mask="+52(99)-99-99-99-99"
             />
           </Col>
 

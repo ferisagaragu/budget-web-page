@@ -184,10 +184,14 @@ class BudgetView extends Component<Props, State> {
           phoneNumber,
           address,
           term,
-          workforce,
-          total
+          workforce
         } = this.state.renderSelectedBudget;
-        
+        let tolatOut: string = '0 MNX'; 
+
+        exelData.forEach((element: BudgetTableModel) => {
+          tolatOut += +element.total.replace(' MNX','');
+        });
+
         const data: BudgetModel = new BudgetModel({
           uid,
           name,
@@ -199,7 +203,7 @@ class BudgetView extends Component<Props, State> {
           address,
           term,
           workforce,
-          total,
+          totla: tolatOut,
           budgetTable: exelData
         });
 

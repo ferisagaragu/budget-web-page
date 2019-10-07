@@ -5,6 +5,7 @@ import { ModalComponent } from '../../../shared/modal/modal.component';
 import FormCreateBudgetComponent from '../form-create-budget/form-create-budget.component';
 import moment from 'moment';
 import { BudgetModel } from '../../../core/models/budget.model';
+import FormCreateCompanyComponent from '../form-create-company/form-create-company.component';
 import './add-budget.css';
 
 interface Props { 
@@ -13,6 +14,7 @@ interface Props {
 
 interface State { 
   showModal: boolean;
+  showModalCompany: boolean;
 }
 
 class AddBudgetComponent extends Component<Props, State> {
@@ -21,7 +23,8 @@ class AddBudgetComponent extends Component<Props, State> {
     super(props);
 
     this.state = {
-      showModal: false
+      showModal: false,
+      showModalCompany: false
     }
   }
   
@@ -34,7 +37,7 @@ class AddBudgetComponent extends Component<Props, State> {
   }
 
   render() {
-    const { showModal } = this.state;
+    const { showModal, showModalCompany } = this.state;
 
     return (
       <>
@@ -58,6 +61,22 @@ class AddBudgetComponent extends Component<Props, State> {
           size="xl"
         />
 
+        <ModalComponent 
+          title="Crear una nueva compañia"
+          modalShow={ showModalCompany }
+          body={ 
+            <FormCreateCompanyComponent
+              initialValues={ 
+                {} 
+              } 
+              cancel={ () => this.setState({ showModalCompany: !showModalCompany }) }
+              submitActions={ (formData: BudgetModel) => {} }
+            /> 
+          }
+          onHide={ () => this.setState({ showModalCompany: !showModalCompany }) }
+          size="xl"
+        />
+
         <Col className="ml-3 mr-3 mt-3 mb-3" md={ 3 }>
           <Card className="card-add">
             <Card.Body>
@@ -74,10 +93,18 @@ class AddBudgetComponent extends Component<Props, State> {
               <Card.Text className="text-center mt-5">
                 <Button 
                   variant="outline-success"
-                  className="btn btn-circle btn-xl"
+                  className="btn btn-circle btn-xl mr-3"
                   onClick={ () => this.setState({ showModal: true }) }
                 >
                   <FontAwesomeIcon icon="calculator" />
+                </Button>
+
+                <Button 
+                  variant="outline-info"
+                  className="btn btn-circle btn-xl"
+                  onClick={ () => this.setState({ showModalCompany: true }) }
+                >
+                  <FontAwesomeIcon icon="user-plus" />
                 </Button>
               </Card.Text>
             </Card.Body>

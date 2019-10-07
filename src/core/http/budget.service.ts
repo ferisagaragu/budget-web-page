@@ -2,6 +2,7 @@ import PetitionService from "./petition";
 import Firebase from '../../shared/firebase/firebase.shared';
 import { BudgetModel } from "../models/budget.model";
 import { BudgetTableModel } from "../models/budget-table.model";
+import key from "../../shared/key/react-elements.key";
 
 class BudgetService {
 
@@ -52,6 +53,7 @@ class BudgetService {
   }
 
   public createBudget(uid: string, data: any, onError: Function): void {
+    data.name = `${data.name} - ${key()}`;
     this.firebase.push(`budgets/${uid}`, data,  
       (error: any) => {
         onError(error);
