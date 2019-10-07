@@ -6,10 +6,12 @@ import FormCreateBudgetComponent from '../form-create-budget/form-create-budget.
 import moment from 'moment';
 import { BudgetModel } from '../../../core/models/budget.model';
 import CompanyView from '../../company/company.view';
+import { CompanyModel } from '../../../core/models/company.model';
 import './add-budget.css';
 
 interface Props { 
   submitActions: Function;
+  company: Array<CompanyModel>;
 }
 
 interface State { 
@@ -38,6 +40,7 @@ class AddBudgetComponent extends Component<Props, State> {
 
   render() {
     const { showModal, showModalCompany } = this.state;
+    const { company } = this.props;
 
     return (
       <>
@@ -49,12 +52,12 @@ class AddBudgetComponent extends Component<Props, State> {
               initialValues={ 
                 { 
                   date: moment().format("DD - MMMM - YYYY"),
-                  dateEnd: moment().format("DD - MMMM - YYYY"),
-                  company: { value: '1', label: 'FerGarGod' }
+                  dateEnd: moment().format("DD - MMMM - YYYY")
                 } 
               } 
               cancel={ () => this.setState({ showModal: !showModal }) }
               submitActions={ (formData: BudgetModel) => this.submit(formData) }
+              company={ company }
             /> 
           }
           onHide={ () => this.setState({ showModal: !showModal }) }

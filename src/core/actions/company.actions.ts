@@ -29,3 +29,13 @@ export function createCompany(uid: string, companyData: CompanyModel): Function 
     );
   }
 }
+
+export function removeCompany(uid: string, companyId: string): Function {
+  return async (dispatch: Function) => {
+    companyService.removeCompany(uid, companyId, 
+      (error: any) => {
+        alert('error', 'Upps', 'Hubo un problema al eliminar la compañia');
+      }
+    );
+  }
+}

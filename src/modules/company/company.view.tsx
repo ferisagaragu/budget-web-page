@@ -4,9 +4,10 @@ import { Container } from 'react-bootstrap';
 import ListCompanyComponent from './list-company/list-company.component';
 import { CompanyModel } from '../../core/models/company.model';
 import FormCreateCompanyComponent from './form-create-company/form-create-company.component';
-import { createCompany, getCompany } from '../../core/actions/company.actions';
+import { createCompany, getCompany, removeCompany } from '../../core/actions/company.actions';
 import { UserDataModel } from '../../core/models/user-data.model';
 import { FormCreateCompanyReducerEnum } from '../../core/enums/form-create-company-reducer.enum';
+import { alertQuestion } from '../../shared/swal/swal.shared';
 
 interface Props { 
   userData: UserDataModel;
@@ -14,6 +15,7 @@ interface Props {
   createCompany: Function;
   getCompany: Function;
   resetForm: Function;
+  removeCompany: Function;
 }
 
 interface State { }
@@ -36,6 +38,19 @@ class CompanyView extends Component<Props, State> {
     resetForm();
   }
   
+  private onDropCompany(companyData: CompanyModel): void {
+    const { userData, removeCompany } = this.props;
+
+    alertQuestion(
+      'question', 
+      'Eliminar compañia', 
+      '¿Estas seguro que deseas eliminar la compañia?', 
+      () => {
+        removeCompany(userData.uid, companyData.value.uid);
+      }
+    );
+  }
+
   render() {
     const { company } = this.props;
 
@@ -48,7 +63,7 @@ class CompanyView extends Component<Props, State> {
 
         <ListCompanyComponent 
           company={ company }
-          onDrop={ (companyData: CompanyModel) => console.log(companyData) }
+          onDrop={ (companyData: CompanyModel) => this.onDropCompany(companyData) }
         />
       </Container>
     );
@@ -63,7 +78,8 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (dispatch: Function) => ({
   createCompany: (uid: string, companyData: CompanyModel) => dispatch(createCompany(uid,companyData)),
   getCompany: (uid: string) => dispatch(getCompany(uid)),
-  resetForm: () => dispatch(reset(FormCreateCompanyReducerEnum.FORM_CREATE_COMPANY_SUBMIT))
+  resetForm: () => dispatch(reset(FormCreateCompanyReducerEnum.FORM_CREATE_COMPANY_SUBMIT)),
+  removeCompany: (uid: string, companyId: string) => dispatch(removeCompany(uid, companyId))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(CompanyView);

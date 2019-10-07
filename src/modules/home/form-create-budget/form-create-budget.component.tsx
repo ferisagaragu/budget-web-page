@@ -8,6 +8,7 @@ import renderSingleSelect from '../../../shared/redux-form/redux-render-single-s
 import GoogleSuggest from '../../../shared/redux-form/redux-render-google-suggest.shared';
 import RenderTextField from '../../../shared/redux-form/redux-render-text-field.shared';
 import RenderMaskField from '../../../shared/redux-form/redux-render-mask-field.shared';
+import { CompanyModel } from '../../../core/models/company.model';
 import './form-create-budget.css';
 
 interface Props { 
@@ -16,13 +17,14 @@ interface Props {
   cancel: any;
   submitting: any;
   submitActions: Function;
+  company: Array<CompanyModel>;
 }
 
 interface State { }
 
 class FormCreateBudgetComponent extends Component<Props, State> {
   render() {
-    const { handleSubmit, cancel, submitting, submitActions, initialValues } = this.props;
+    const { handleSubmit, cancel, submitting, submitActions, initialValues, company } = this.props;
 
     return (
       <form onSubmit={ handleSubmit(submitActions) }>
@@ -71,7 +73,7 @@ class FormCreateBudgetComponent extends Component<Props, State> {
               name="company"
               component={ renderSingleSelect }
               label="Compañia"
-              options={ [{ value: '1', label: 'FerGarGod' }, { value: '2', label: 'FerGarGod2' }] }
+              options={ company }
               noOptionsMessage="No se encontraron coincidencias"
               defaultValue={ initialValues.company }
             />

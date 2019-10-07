@@ -35,6 +35,14 @@ class CompanyService {
     });
   }
 
+  public removeCompany(uid: string, companyId: string, onError: Function): void {
+    this.firebase.remove(`company/${uid}/${companyId}`,
+      (error: any) => {
+        onError(error);
+      }
+    );
+  }
+
 }
 
 export default CompanyService;

@@ -19,13 +19,22 @@ class ListCompanyComponent extends Component<Props, State> {
       <>
         {
           company ? 
-            company.map((company: CompanyModel) => (
-              <ItemCompanyComponent
-                key={ key() }
-                label={ company.label }
-                onDrop={ () => onDrop(company) }
-              />
-            ))
+            <>
+              {
+                company.length !== 0 ?
+                  company.map((company: CompanyModel) => (
+                    <ItemCompanyComponent
+                      key={ key() }
+                      label={ company.label }
+                      onDrop={ () => onDrop(company) }
+                    />
+                  ))
+                :
+                  <div className="text-center">
+                    No tienes compañias registradas
+                  </div>
+              }
+            </>
           :
             <div>Cargando...</div>  
         }
