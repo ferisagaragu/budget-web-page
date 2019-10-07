@@ -248,7 +248,7 @@ class BudgetView extends Component<Props, State> {
           modalShow={ showModalPdf } 
           onHide={ () => this.setState({ showModalPdf: !showModalPdf }) } 
           body={
-            <PdfView />
+            <PdfView viewer={ true } />
           } 
           size="xl"
         />

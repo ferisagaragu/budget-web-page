@@ -30,3 +30,41 @@ header {
   width: 100%;
   height: 1150px;
 }
+
+.pdf-button {
+  color: #fff;
+  background-color: #ff0000;
+  border-color: #ff0000
+}
+
+.pdf-button:hover {
+  color: #fff;
+  background-color: #ff0000;
+  border-color: #ff0000
+}
+
+.pdf-button:focus,
+.pdf-button.focus {
+  box-shadow: 0 0 0 .2rem rgba(255, 0, 0, 0.5)
+}
+
+.pdf-button.disabled,
+.pdf-button:disabled {
+  color: #fff;
+  background-color: #ff0000;
+  border-color: #ff0000
+}
+
+.pdf-button:not(:disabled):not(.disabled):active,
+.pdf-button:not(:disabled):not(.disabled).active,
+.show>.pdf-button.dropdown-toggle {
+  color: #fff;
+  background-color: #fd9191;
+  border-color: #ff0000
+}
+
+.pdf-button:not(:disabled):not(.disabled):active:focus,
+.pdf-button:not(:disabled):not(.disabled).active:focus,
+.show>.pdf-button.dropdown-toggle:focus {
+  box-shadow: 0 0 0 .2rem rgba(255, 0, 0, 0.5)
+}

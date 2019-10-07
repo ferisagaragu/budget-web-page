@@ -17,7 +17,8 @@ import {
   faPlus,
   faReply,
   faFileExcel,
-  faInfoCircle
+  faInfoCircle,
+  faDownload
 } from '@fortawesome/free-solid-svg-icons';
 
 const icons: any = [ 
@@ -39,7 +40,8 @@ const icons: any = [
   faPlus,
   faReply,
   faFileExcel,
-  faInfoCircle
+  faInfoCircle,
+  faDownload
 ];
 
 export default icons;

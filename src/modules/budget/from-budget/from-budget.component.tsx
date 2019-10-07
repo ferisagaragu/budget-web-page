@@ -8,8 +8,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import RenderDatePicker from '../../../shared/redux-form/redux-render-date-picker.shared';
 import renderSingleSelect from '../../../shared/redux-form/redux-render-single-select.shared';
 import GoogleSuggest from '../../../shared/redux-form/redux-render-google-suggest.shared';
+import RenderMaskField from '../../../shared/redux-form/redux-render-mask-field.shared';
 import TableBudgetComponent from '../table-budget/table-budget.component';
 import { BudgetTableModel } from '../../../core/models/budget-table.model';
+import PdfView from '../../pdf/pdf.view';
 import './from-budget.css';
 
 interface Props { 
@@ -95,9 +97,9 @@ class FromBudgetComponent extends Component<Props, State> {
             <Field 
               className="form-control"
               name="phoneNumber"
-              component={ RenderTextField }
+              component={ RenderMaskField }
               label="Numero telefonico"
-              type="number"
+              mask="+52(99)-99-99-99-99"
             />
           </Col>
 
@@ -162,9 +164,10 @@ class FromBudgetComponent extends Component<Props, State> {
               Guardar
             </Button>
 
+            <PdfView />
+
             <Button 
-              className="mr-3"
-              variant="info"
+              className="mr-3 pdf-button"
               onClick={ () => onPdf() }
             >
               <FontAwesomeIcon icon="file-pdf" />
