@@ -99,7 +99,7 @@ class FromBudgetComponent extends Component<Props, State> {
               name="phoneNumber"
               component={ RenderMaskField }
               label="Numero telefonico"
-              mask="+52(99)-99-99-99-99"
+              mask="+52 (99) 99-99-99-99"
             />
           </Col>
 
@@ -217,7 +217,7 @@ const validate = (values: any) => {
     errors.company = 'La compañia es requerida';
   }
 
-  if (!values.phoneNumber) {
+  if (!values.phoneNumber || values.phoneNumber === '+52 (__) __-__-__-__') {
     errors.phoneNumber = 'El numero telefonico es requerido';
   }
 
