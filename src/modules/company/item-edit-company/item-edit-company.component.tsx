@@ -11,7 +11,7 @@ interface Props {
 }
 
 interface State { 
-  renderValue: CompanyModel;
+  renderValue: string;
   styleError: string;
 }
 
@@ -21,11 +21,10 @@ class ItemEditCompanyComponent extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-
     const { value } = this.props;
     
     this.state = {
-      renderValue: value,
+      renderValue: value.label,
       styleError: ''
     }
 
@@ -34,11 +33,12 @@ class ItemEditCompanyComponent extends Component<Props, State> {
 
   private onSave(): void {
     const inputValue = this.companyInput.current;
-    const { onEdit } = this.props;
+    const { onEdit, value } = this.props;
     
     if (inputValue.value) {
       this.setState({ styleError: '' });
-      onEdit(inputValue.value);
+      value.label = inputValue.value;
+      onEdit(value);
     } else {
       this.setState({ styleError: 'error' });
     }
@@ -64,7 +64,7 @@ class ItemEditCompanyComponent extends Component<Props, State> {
           <input
             ref={ this.companyInput }
             className={ `form-control field-text ${styleError}` }
-            value={ renderValue.label ? renderValue.label : '' }
+            value={ renderValue ? renderValue : '' }
             onChange={ (evt: any) => this.onChange(evt.target) }
           />
 
@@ -89,7 +89,7 @@ class ItemEditCompanyComponent extends Component<Props, State> {
           <Button 
             className="btn btn-circle btn-lg"
             variant="outline-danger"
-            onClick={ () => onCancel() }
+            onClick={ () => onCancel(renderValue) }
           >
             <FontAwesomeIcon icon="times" />
           </Button>

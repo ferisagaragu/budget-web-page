@@ -29,8 +29,14 @@ class ListCompanyComponent extends Component<Props, State> {
     this.setState({ selectedEdit: uid });
   }
 
+  private onEditSubmit(companyData: CompanyModel): void {
+    const { onEdit } = this.props;
+    onEdit(companyData);
+    this.setState({ selectedEdit: '' });
+  }
+
   render() {
-    const { company, onDrop, onEdit } = this.props;
+    const { company, onDrop } = this.props;
     const { selectedEdit } = this.state;
 
     return (
@@ -49,7 +55,7 @@ class ListCompanyComponent extends Component<Props, State> {
                           key={ key() }
                           value={ company }
                           onCancel={ () => this.setState({ selectedEdit: '' }) }
-                          onEdit={ () => {} }
+                          onEdit={ (companyData: CompanyModel) => this.onEditSubmit(companyData) }
                         />
                       );
                     } else {
