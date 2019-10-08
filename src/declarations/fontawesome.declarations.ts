@@ -20,7 +20,8 @@ import {
   faInfoCircle,
   faDownload,
   faBuilding,
-  faCheck
+  faCheck,
+  faExclamationTriangle
 } from '@fortawesome/free-solid-svg-icons';
 
 const icons: any = [ 
@@ -45,7 +46,8 @@ const icons: any = [
   faInfoCircle,
   faDownload,
   faBuilding,
-  faCheck
+  faCheck,
+  faExclamationTriangle
 ];
 
 export default icons;

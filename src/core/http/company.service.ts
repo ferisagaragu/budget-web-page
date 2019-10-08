@@ -43,6 +43,14 @@ class CompanyService {
     );
   }
 
+  public updateCompany(uid: string, companyId: string, data: any, onError: Function): void {
+    this.firebase.update(`company/${uid}/${companyId}`, data,
+      () => { }, (error: any) => {
+        onError(error);
+      }
+    );
+  }
+
 }
 
 export default CompanyService;

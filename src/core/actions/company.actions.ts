@@ -39,3 +39,13 @@ export function removeCompany(uid: string, companyId: string): Function {
     );
   }
 }
+
+export function updateCompany(uid: string, companyId: string, data: CompanyModel): Function {
+  return async (dispatch: Function) => {
+    companyService.updateCompany(uid, companyId, data,
+      (error: any) => {
+        alert('error', 'Upps', 'Hubo un problema al actualizar la compañia');
+      }
+    );
+  }
+}

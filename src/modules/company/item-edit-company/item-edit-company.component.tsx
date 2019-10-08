@@ -60,7 +60,7 @@ class ItemEditCompanyComponent extends Component<Props, State> {
 
     return (
       <Row className="item-list">
-        <Col md={ 10 }>
+        <Col className="text-left" md={ 10 }>
           <input
             ref={ this.companyInput }
             className={ `form-control field-text ${styleError}` }
@@ -75,8 +75,8 @@ class ItemEditCompanyComponent extends Component<Props, State> {
               </label>
           }
         </Col>
-
-        <Col className="buttons-action" md={ 2 }>
+        
+        <Col className="text-right" md={ 2 }>
           <Button 
             className="btn btn-circle btn-lg mr-3"
             type="submit" 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from '../../../imports/react-redux.import';
 import { FormCreateBudgetReducerEnum } from '../../../core/enums/form-create-budget-reducer.enum';
 import RenderDatePicker from '../../../shared/redux-form/redux-render-date-picker.shared';
-import { Button, Row, Col } from 'react-bootstrap';
+import { Button, Row, Col, Alert } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import renderSingleSelect from '../../../shared/redux-form/redux-render-single-select.shared';
 import GoogleSuggest from '../../../shared/redux-form/redux-render-google-suggest.shared';
@@ -97,6 +97,24 @@ class FormCreateBudgetComponent extends Component<Props, State> {
               label="Direccion de la compañia"
             />
           </Col>
+
+          {
+            company.length === 0 && 
+              <Col md={ 12 }>
+                <Alert variant="warning">
+                  <Alert.Heading>
+                    <FontAwesomeIcon icon="exclamation-triangle" />
+                    &nbsp;
+                    !No lo olvides!
+                  </Alert.Heading>
+
+                  <p>
+                    Antes de crear un presupuesto debes registrar tu(s) compañia(s) 
+                    para que puedas seleccionarla.
+                  </p>
+                </Alert>
+              </Col>
+          }
 
           <Col className="text-right" md={ 12 }>
             <Button 
