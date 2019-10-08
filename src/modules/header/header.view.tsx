@@ -35,7 +35,11 @@ class HeaderView extends Component<Props, State> {
       <>
         <header>
           <Row>
-            <Col className="mt-1" md={ 11 }>
+            <Col md={ 1 }>
+              <img alt="user_image" src={ userData.photo } />
+            </Col>
+
+            <Col className="mt-1" md={ 10 }>
               <h4>Bienvenid@ { userData.name }</h4>
             </Col>
 
