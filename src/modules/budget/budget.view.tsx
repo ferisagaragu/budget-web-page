@@ -10,12 +10,16 @@ import { ModalComponent } from '../../shared/modal/modal.component';
 import FormElementTableComponent from './form-element-table/form-element-table.component';
 import { BudgetTableModel } from '../../core/models/budget-table.model';
 import PdfView from '../pdf/pdf.view';
+import { getCompany } from '../../core/actions/company.actions';
+import { CompanyModel } from '../../core/models/company.model';
 
 interface Props { 
   userData: UserDataModel;
   selectedBudget: BudgetModel;
   updateBudget: Function;
+  getCompany: Function;
   history: any;
+  company: Array<CompanyModel>;
 }
 
 interface State { 
@@ -50,6 +54,11 @@ class BudgetView extends Component<Props, State> {
     if (!selectedBudget.budgetTable) {
       selectedBudget.budgetTable = [];
     }
+  }
+
+  componentDidMount() {
+    const { userData, getCompany } = this.props;
+    getCompany(userData.uid);
   }
 
   private setMode(data: BudgetTableModel): void {
@@ -227,7 +236,7 @@ class BudgetView extends Component<Props, State> {
   }
 
   render() {
-    const { selectedBudget } = this.props;
+    const { selectedBudget, company } = this.props;
     const { showModal, showModalPdf, editBudgetTable, renderSelectedBudget, mode } = this.state;
 
     return (
@@ -268,6 +277,7 @@ class BudgetView extends Component<Props, State> {
               onDrop={ (index: number) => this.onDropTable(index) }
               onPdf={ () => this.setState({ showModalPdf: true }) }
               onLoadFile={ (exelData: Array<BudgetTableModel>, error: string) => this.setExelDataTable(exelData, error) }
+              company={ company }
             />
           :
             <div>No hay un presupuesto seleccionado.</div>
@@ -279,12 +289,14 @@ class BudgetView extends Component<Props, State> {
 
 const mapStateToProps = (state: any) => ({ 
   userData: state.userData,
-  selectedBudget: state.selectedBudget
+  selectedBudget: state.selectedBudget,
+  company: state.company
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({
   updateBudget: (uid: string, data: BudgetModel) => dispatch(updateBudget(uid, data)),
-  setSelectedBudget: (data: BudgetModel) => dispatch(setSelectedBudget(data))
+  setSelectedBudget: (data: BudgetModel) => dispatch(setSelectedBudget(data)),
+  getCompany: (uid: string) => dispatch(getCompany(uid))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(BudgetView);

@@ -12,6 +12,7 @@ import RenderMaskField from '../../../shared/redux-form/redux-render-mask-field.
 import TableBudgetComponent from '../table-budget/table-budget.component';
 import { BudgetTableModel } from '../../../core/models/budget-table.model';
 import PdfView from '../../pdf/pdf.view';
+import { CompanyModel } from '../../../core/models/company.model';
 import './from-budget.css';
 
 interface Props { 
@@ -25,6 +26,7 @@ interface Props {
   onDrop: Function;
   onPdf: Function;
   onLoadFile: Function;
+  company: Array<CompanyModel>; 
 }
 
 interface State { }
@@ -41,7 +43,8 @@ class FromBudgetComponent extends Component<Props, State> {
       onEditTable,
       onDrop,
       onPdf,
-      onLoadFile 
+      onLoadFile,
+      company 
     } = this.props;
 
     return (
@@ -87,7 +90,7 @@ class FromBudgetComponent extends Component<Props, State> {
               name="company"
               component={ renderSingleSelect }
               label="Compañia"
-              options={ [{ value: '1', label: 'FerGarGod' }, { value: '2', label: 'FerGarGod2' }] }
+              options={ company }
               noOptionsMessage="No se encontraron coincidencias"
               defaultValue={ initialValues.company }
             />
@@ -198,7 +201,8 @@ const validate = (values: any) => {
     company: '',
     phoneNumber: '',
     address: '',
-    term: ''
+    term: '',
+    workforce: ''
   }
   
   if (!values.date) {
@@ -227,6 +231,10 @@ const validate = (values: any) => {
 
   if (!values.term) {
     errors.term = 'Los terminos y condiciones son requeridos';
+  }
+
+  if (!values.workforce) {
+    errors.workforce = 'La mano de obra es requerida';
   }
 
   return errors

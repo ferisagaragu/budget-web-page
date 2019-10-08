@@ -6,21 +6,30 @@ import './item-company.css';
 interface Props { 
   label: string;
   onDrop: Function;
+  onEdit: Function;
 }
 
 interface State { }
 
 class ItemCompanyComponent extends Component<Props, State> {
   render() {
-    const { label, onDrop } = this.props;
+    const { label, onDrop, onEdit } = this.props;
 
     return (
       <Row className="item-list">
-        <Col className="text-left" md={ 11 }>
+        <Col className="text-left" md={ 10 }>
           { label }
         </Col>
         
-        <Col className="text-rigth" md={ 1 }>
+        <Col className="text-right" md={ 2 }>
+          <Button
+            className="btn btn-circle btn-lg mr-3"
+            variant="outline-info"
+            onClick={ () => onEdit() }
+          >
+            <FontAwesomeIcon icon="edit" />
+          </Button>
+          
           <Button
             className="btn btn-circle btn-lg"
             variant="outline-danger"

@@ -64,6 +64,7 @@ class CompanyView extends Component<Props, State> {
         <ListCompanyComponent 
           company={ company }
           onDrop={ (companyData: CompanyModel) => this.onDropCompany(companyData) }
+          onEdit={ () => {} }
         />
       </Container>
     );

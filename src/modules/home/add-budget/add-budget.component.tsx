@@ -103,7 +103,7 @@ class AddBudgetComponent extends Component<Props, State> {
                   className="btn btn-circle btn-xl"
                   onClick={ () => this.setState({ showModalCompany: true }) }
                 >
-                  <FontAwesomeIcon icon="user-plus" />
+                  <FontAwesomeIcon icon="building" />
                 </Button>
               </Card.Text>
             </Card.Body>
